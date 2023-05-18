@@ -9,6 +9,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 void renderLoop(Window* window);
 
+void processInput(GLFWwindow* window);
+
 int main(void)
 {
     if (!glfwInit())
@@ -59,8 +61,18 @@ void renderLoop(Window* window)
 {
     while (!glfwWindowShouldClose(window->getGLFWwindow()))
     {
+        processInput(window->getGLFWwindow());
+
         glfwSwapBuffers(window->getGLFWwindow());
 
         glfwPollEvents();
+    }
+}
+
+void processInput(GLFWwindow* window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
     }
 }
