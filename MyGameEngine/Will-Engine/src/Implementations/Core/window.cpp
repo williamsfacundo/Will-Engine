@@ -30,6 +30,11 @@ namespace WillEngine
 		}
 	}
 
+	GLFWwindow* Window::getGLFWwindow()
+	{
+		return _gLFWwindow;
+	}
+
 	bool Window::initWindow()
 	{
 		_gLFWwindow = glfwCreateWindow(_windowWidth, _windowHeight, WindowInitialName, NULL, NULL);

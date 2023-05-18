@@ -23,6 +23,8 @@ namespace WillEngine
 		Window(int windowWidth, int windowHeight);
 		~Window();
 
+		GLFWwindow* getGLFWwindow();
+
 		bool initWindow();
 
 		void createValidOpenglContext();

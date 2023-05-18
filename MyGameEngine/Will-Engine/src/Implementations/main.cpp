@@ -5,6 +5,8 @@
 
 using namespace WillEngine;
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
 int main(void)
 {
     if (!glfwInit())
@@ -32,10 +34,17 @@ int main(void)
         return -3;
     }
 
+    glfwSetFramebufferSizeCallback(window->getGLFWwindow(), framebuffer_size_callback);
+
     if (window != nullptr) 
     { 
         delete window; 
     }
 
     return 0;
+}
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
 }
