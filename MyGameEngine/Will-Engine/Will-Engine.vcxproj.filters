@@ -18,9 +18,15 @@
     <ClCompile Include="src\Implementations\main.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Implementations\Core\window.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Headers\Core\window.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
