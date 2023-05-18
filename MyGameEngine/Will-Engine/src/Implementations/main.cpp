@@ -1,7 +1,7 @@
 #include <glew.h>
 #include <glfw3.h>
 
-#include "../Headers/Core/window.h"
+#include "Core/window.h"
 
 using namespace WillEngine;
 
@@ -16,9 +16,9 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); //This set the Opengl "Left part" Version: this is v3.3
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //Encourages the use of modern OpenGL 
 
-    Window* window = new Window();
+    /*Window* window = new Window();
 
-    delete window;
+    delete window;*/
 
     return 0;
 }
