@@ -2,6 +2,7 @@
 #include <glfw3.h>
 
 #include "Core/window.h"
+#include "Core/Engine.h"
 
 using namespace WillEngine;
 
@@ -44,7 +45,7 @@ int main(void)
 
     renderLoop(window);
 
-    if (window != nullptr) 
+    if (window != nullptr)
     { 
         delete window; 
     }
