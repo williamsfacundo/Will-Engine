@@ -7,6 +7,8 @@ using namespace WillEngine;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
+void renderLoop(Window* window);
+
 int main(void)
 {
     if (!glfwInit())
@@ -36,10 +38,14 @@ int main(void)
 
     glfwSetFramebufferSizeCallback(window->getGLFWwindow(), framebuffer_size_callback);
 
+    renderLoop(window);
+
     if (window != nullptr) 
     { 
         delete window; 
     }
+
+    glfwTerminate();
 
     return 0;
 }
@@ -47,4 +53,14 @@ int main(void)
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
+}
+
+void renderLoop(Window* window)
+{
+    while (!glfwWindowShouldClose(window->getGLFWwindow()))
+    {
+        glfwSwapBuffers(window->getGLFWwindow());
+
+        glfwPollEvents();
+    }
 }

@@ -26,7 +26,7 @@ namespace WillEngine
 	{
 		if (_gLFWwindow != nullptr)
 		{
-			glfwTerminate();
+			glfwDestroyWindow(_gLFWwindow);
 		}
 	}
 
