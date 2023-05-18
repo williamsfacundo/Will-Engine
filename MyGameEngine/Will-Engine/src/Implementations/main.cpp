@@ -11,6 +11,8 @@ void renderLoop(Window* window);
 
 void processInput(GLFWwindow* window);
 
+void RenderingCommands();
+
 int main(void)
 {
     if (!glfwInit())
@@ -61,7 +63,11 @@ void renderLoop(Window* window)
 {
     while (!glfwWindowShouldClose(window->getGLFWwindow()))
     {
+        //Input
         processInput(window->getGLFWwindow());
+
+        //Rendering
+        RenderingCommands();
 
         glfwSwapBuffers(window->getGLFWwindow());
 
@@ -75,4 +81,11 @@ void processInput(GLFWwindow* window)
     {
         glfwSetWindowShouldClose(window, true);
     }
+}
+
+void RenderingCommands()
+{
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+    glClear(GL_COLOR_BUFFER_BIT);
 }
