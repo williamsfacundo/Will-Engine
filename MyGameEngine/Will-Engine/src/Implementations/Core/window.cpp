@@ -24,10 +24,13 @@ namespace WillEngine
 
 	Window::~Window()
 	{
-		
+		if (_gLFWwindow != nullptr)
+		{
+			glfwTerminate();
+		}
 	}
 
-	int Window::initWindow()
+	bool Window::initWindow()
 	{
 		_gLFWwindow = glfwCreateWindow(_windowWidth, _windowHeight, WindowInitialName, NULL, NULL);
 
@@ -37,8 +40,10 @@ namespace WillEngine
 			
 			glfwTerminate();
 			
-			return -1;
+			return false;
 		}
+
+		return true;
 	}
 
 	void Window::createValidOpenglContext()

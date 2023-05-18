@@ -16,9 +16,26 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); //This set the Opengl "Left part" Version: this is v3.3
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //Encourages the use of modern OpenGL 
 
-    /*Window* window = new Window();
+    Window* window = new Window();
 
-    delete window;*/
+    bool windowInitSuccessfully = window->initWindow();
+
+    if(!windowInitSuccessfully)
+    {
+        return -2;
+    }
+
+    window->createValidOpenglContext();
+        
+    if (GLEW_OK != glewInit())
+    {
+        return -3;
+    }
+
+    if (window != nullptr) 
+    { 
+        delete window; 
+    }
 
     return 0;
 }
