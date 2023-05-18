@@ -1,9 +1,5 @@
 #include "Core/window.h"
 
-#include <iostream>
-
-using namespace std;
-
 namespace WillEngine
 {
 	Window::Window()
@@ -39,12 +35,8 @@ namespace WillEngine
 	{
 		_gLFWwindow = glfwCreateWindow(_windowWidth, _windowHeight, WindowInitialName, NULL, NULL);
 
-		if (_gLFWwindow == NULL)
+		if (_gLFWwindow == nullptr)
 		{
-			std::cout << "Failed to create GLFW window" << std::endl;
-			
-			glfwTerminate();
-			
 			return false;
 		}
 

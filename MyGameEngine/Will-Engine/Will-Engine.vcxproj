@@ -149,12 +149,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Implementations\Core\callback_functions.cpp" />
     <ClCompile Include="src\Implementations\Core\Engine.cpp" />
     <ClCompile Include="src\Implementations\Core\window.cpp" />
     <ClCompile Include="src\Implementations\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
+    <ClInclude Include="src\Headers\Core\callback_functions.h" />
     <ClInclude Include="src\Headers\Core\Engine.h" />
     <ClInclude Include="src\Headers\Core\window.h" />
   </ItemGroup>
