@@ -33,7 +33,9 @@ namespace WillEngine
 
 		int gLEWInitialization();
 
-		void gLFWCallbackFunstionsRegister();		
+		void gLFWCallbackFunstionsRegister();
+
+		void setVertexData();
 #pragma endregion
 
 #pragma region UPDATE

@@ -31,7 +31,7 @@ namespace WillEngine
 			return INITIALIZATION_FAILED;
 		}
 
-		gLFWCallbackFunstionsRegister();
+		gLFWCallbackFunstionsRegister();		
 
 		return SUCCESSFUL_INITIALIZATION;
 	}
@@ -87,6 +87,25 @@ namespace WillEngine
 	{
 		glfwSetFramebufferSizeCallback(_window->getGLFWwindow(), framebuffer_size_callback);
 	}	
+
+	void Engine::setVertexData()
+	{
+		float vertices[] = {
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f,  0.5f, 0.0f
+		};
+
+		unsigned int VBO;
+
+		glGenBuffers(1, &VBO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
 
 	void Engine::engineLoop()
 	{
@@ -155,6 +174,8 @@ namespace WillEngine
 	{
 		if (engineInitialization() == SUCCESSFUL_INITIALIZATION)
 		{
+			setVertexData();
+
 			engineLoop();
 		}
 
