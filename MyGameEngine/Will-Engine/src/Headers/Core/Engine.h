@@ -5,6 +5,7 @@
 #include <glfw3.h>
 
 #include "Core/window.h"
+#include "Shaders/shaderProgram.h"
 
 namespace WillEngine
 {
@@ -16,8 +17,8 @@ namespace WillEngine
 	private:
 #pragma region VARIABLES
 		Window* _window;
-
-		unsigned int _shaderProgram;
+		ShaderProgram* _shaderProgram;
+		
 		unsigned int _vertexArray;
 
 		bool _isGLFWInited;
@@ -38,13 +39,9 @@ namespace WillEngine
 
 		void gLFWCallbackFunstionsRegister();
 
-		void setVertexData();
-
-		void setVertexShader();
-
-		void setFragmentShader();
-
 		void setShaderProgram();
+
+		void setVertexData();		
 #pragma endregion
 
 #pragma region UPDATE

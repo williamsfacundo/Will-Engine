@@ -11,9 +11,7 @@ namespace WillEngine
 	public:
 		ShaderProgram();
 		~ShaderProgram();
-
-		unsigned int getShaderProgram();
-
+		
 		void generateShaderProgram();
 
 		void useShaderProgram();
