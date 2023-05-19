@@ -95,57 +95,11 @@ namespace WillEngine
 		_shaderProgram->generateShaderProgram();
 	}
 
-	void Engine::setVertexData()
+	void Engine::setObjects()
 	{
-#pragma region INITIALIZATION
-		float vertices[] = 
-		{
-			0.5f,  0.5f, 0.0f,  // top right
-			0.5f, -0.5f, 0.0f,  // bottom right
-			-0.5f, -0.5f, 0.0f,  // bottom left
-			-0.5f,  0.5f, 0.0f   // top left 
-		};
+		_object = new Object();
 
-		unsigned int indices[] = 
-		{  
-			0, 1, 3,   // first triangle
-			1, 2, 3    // second triangle
-		};
-
-		unsigned int VBO;
-		unsigned int VAO;
-		unsigned int EBO;
-
-		glGenBuffers(1, &VBO);
-
-		glGenVertexArrays(1, &VAO);
-
-		glGenBuffers(1, &EBO);
-#pragma endregion
-
-#pragma region CONFIGURATION
-		glBindVertexArray(VAO); //Saves all the configurations of the object
-
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		
-		glEnableVertexAttribArray(0);		
-
-		glBindVertexArray(0); //This must be unbined first not to save unbined buffers 
-
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-		_vertexArray = VAO;
-#pragma endregion
+		_object->createObject();
 	}	
 
 	void Engine::engineLoop()
@@ -185,7 +139,7 @@ namespace WillEngine
 	{
 		_shaderProgram->useShaderProgram();
 		
-		glBindVertexArray(_vertexArray);
+		_object->selectObject();
 		
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
@@ -204,6 +158,8 @@ namespace WillEngine
 		if (_window != nullptr) { delete _window; }
 
 		if (_shaderProgram != nullptr) { delete _shaderProgram; }
+
+		if (_object != nullptr) { delete _object; }
 	}
 
 	void Engine::closeGLFW()
@@ -220,9 +176,9 @@ namespace WillEngine
 		
 		_shaderProgram = nullptr;
 
-		_shaderProgram = 0;
-		
-		_vertexArray = 0;
+		_object = nullptr;
+
+		_shaderProgram = 0;		
 
 		_isGLFWInited = false;
 	}
@@ -238,7 +194,7 @@ namespace WillEngine
 		{
 			setShaderProgram();		
 
-			setVertexData();			
+			setObjects();		
 
 			engineLoop();
 		}

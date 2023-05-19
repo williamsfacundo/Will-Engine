@@ -6,6 +6,7 @@
 
 #include "Core/window.h"
 #include "Shaders/shaderProgram.h"
+#include "Objects/object.h"
 
 namespace WillEngine
 {
@@ -18,8 +19,7 @@ namespace WillEngine
 #pragma region VARIABLES
 		Window* _window;
 		ShaderProgram* _shaderProgram;
-		
-		unsigned int _vertexArray;
+		Object* _object;	
 
 		bool _isGLFWInited;
 #pragma endregion
@@ -41,7 +41,7 @@ namespace WillEngine
 
 		void setShaderProgram();
 
-		void setVertexData();		
+		void setObjects();
 #pragma endregion
 
 #pragma region UPDATE
