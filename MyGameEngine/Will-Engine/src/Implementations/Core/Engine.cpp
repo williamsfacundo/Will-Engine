@@ -91,36 +91,54 @@ namespace WillEngine
 	void Engine::setVertexData()
 	{
 #pragma region INITIALIZATION
-		float vertices[] = {
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.0f,  0.5f, 0.0f
+		float vertices[] = 
+		{
+			0.5f,  0.5f, 0.0f,  // top right
+			0.5f, -0.5f, 0.0f,  // bottom right
+			-0.5f, -0.5f, 0.0f,  // bottom left
+			-0.5f,  0.5f, 0.0f   // top left 
+		};
+
+		unsigned int indices[] = 
+		{  
+			0, 1, 3,   // first triangle
+			1, 2, 3    // second triangle
 		};
 
 		unsigned int VBO;
+		unsigned int VAO;
+		unsigned int EBO;
 
 		glGenBuffers(1, &VBO);
 
-		unsigned int VAO;
-
 		glGenVertexArrays(1, &VAO);
+
+		glGenBuffers(1, &EBO);
 #pragma endregion
 
-		glBindVertexArray(VAO);
+#pragma region CONFIGURATION
+		glBindVertexArray(VAO); //Saves all the configurations of the object
 
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 		
-		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(0);		
 
-		glBindVertexArray(0);
+		glBindVertexArray(0); //This must be unbined first not to save unbined buffers 
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 		_vertexArray = VAO;
+#pragma endregion
 	}
 
 	void Engine::setVertexShader()
@@ -289,8 +307,8 @@ namespace WillEngine
 			processInput();
 
 			//Rendering
-			RenderingCommands();
-
+			RenderingCommands();			
+			
 			drawTriangles();
 
 			glfwSwapBuffers(_window->getGLFWwindow());
@@ -320,7 +338,7 @@ namespace WillEngine
 		
 		glBindVertexArray(_vertexArray);
 		
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 		glBindVertexArray(0);		
 	}
@@ -375,10 +393,3 @@ namespace WillEngine
 		engineDeinitialization();
 	}
 }
-
-//Recapitulación
-//Configuramos las librerias y opengl
-//Creamos una ventana
-//Cada objeto debera configurarse (VBO, VAO)
-//Cada tipo de objeto deberá tener un shader (no cada individuo sino uno para toda la "familia")
-//Al momento de dibujar se selecciona un shader, se selecciona el VAO que tiene las configuraciones de ese 
