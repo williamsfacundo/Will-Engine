@@ -17,6 +17,9 @@ namespace WillEngine
 #pragma region VARIABLES
 		Window* _window;
 
+		unsigned int _shaderProgram;
+		unsigned int _vertexArray;
+
 		bool _isGLFWInited;
 #pragma endregion
 
@@ -50,6 +53,8 @@ namespace WillEngine
 		void processInput();
 
 		void RenderingCommands();
+
+		void drawTriangles();
 #pragma endregion
 
 #pragma region DEINITIALIZATION

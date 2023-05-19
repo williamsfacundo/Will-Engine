@@ -90,6 +90,7 @@ namespace WillEngine
 
 	void Engine::setVertexData()
 	{
+#pragma region INITIALIZATION
 		float vertices[] = {
 			-0.5f, -0.5f, 0.0f,
 			0.5f, -0.5f, 0.0f,
@@ -100,15 +101,26 @@ namespace WillEngine
 
 		glGenBuffers(1, &VBO);
 
+		unsigned int VAO;
+
+		glGenVertexArrays(1, &VAO);
+#pragma endregion
+
+		glBindVertexArray(VAO);
+
 		glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 		
 		glEnableVertexAttribArray(0);
+
+		glBindVertexArray(0);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		_vertexArray = VAO;
 	}
 
 	void Engine::setVertexShader()
@@ -140,7 +152,7 @@ namespace WillEngine
 			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 
 			cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
-		}
+		}		
 	}
 
 	void Engine::setFragmentShader()
@@ -205,7 +217,7 @@ namespace WillEngine
 			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
 
 			cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
-		}
+		}		
 #pragma endregion
 
 #pragma region FRAGMENT_SHADER
@@ -258,12 +270,14 @@ namespace WillEngine
 
 			cout << "ERROR::PROGRAM::SHADER::LINKING_FAILED\n" << infoLog << endl;
 		}
-
-		glUseProgram(shaderProgram);
+		
+		//glUseProgram(shaderProgram);
 
 		glDeleteShader(vertexShader);
 
 		glDeleteShader(fragmentShader);
+
+		_shaderProgram = shaderProgram;
 #pragma endregion
 	}
 
@@ -276,6 +290,8 @@ namespace WillEngine
 
 			//Rendering
 			RenderingCommands();
+
+			drawTriangles();
 
 			glfwSwapBuffers(_window->getGLFWwindow());
 
@@ -296,6 +312,17 @@ namespace WillEngine
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 		glClear(GL_COLOR_BUFFER_BIT);
+	}
+
+	void Engine::drawTriangles()
+	{
+		glUseProgram(_shaderProgram);
+		
+		glBindVertexArray(_vertexArray);
+		
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		glBindVertexArray(0);		
 	}
 
 	void Engine::engineDeinitialization()
@@ -322,6 +349,10 @@ namespace WillEngine
 	{
 		_window = nullptr;		
 
+		_shaderProgram = 0;
+		
+		_vertexArray = 0;
+
 		_isGLFWInited = false;
 	}
 
@@ -344,3 +375,10 @@ namespace WillEngine
 		engineDeinitialization();
 	}
 }
+
+//Recapitulación
+//Configuramos las librerias y opengl
+//Creamos una ventana
+//Cada objeto debera configurarse (VBO, VAO)
+//Cada tipo de objeto deberá tener un shader (no cada individuo sino uno para toda la "familia")
+//Al momento de dibujar se selecciona un shader, se selecciona el VAO que tiene las configuraciones de ese 
