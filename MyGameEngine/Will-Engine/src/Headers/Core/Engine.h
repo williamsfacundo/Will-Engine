@@ -36,6 +36,8 @@ namespace WillEngine
 		void gLFWCallbackFunstionsRegister();
 
 		void setVertexData();
+
+		void setVertexShader();
 #pragma endregion
 
 #pragma region UPDATE
