@@ -153,12 +153,14 @@
     <ClCompile Include="src\Implementations\Core\Engine.cpp" />
     <ClCompile Include="src\Implementations\Core\window.cpp" />
     <ClCompile Include="src\Implementations\main.cpp" />
+    <ClCompile Include="src\Implementations\Shaders\shaderProgram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
     <ClInclude Include="src\Headers\Core\callback_functions.h" />
     <ClInclude Include="src\Headers\Core\Engine.h" />
     <ClInclude Include="src\Headers\Core\window.h" />
+    <ClInclude Include="src\Headers\Shaders\shaderProgram.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />
