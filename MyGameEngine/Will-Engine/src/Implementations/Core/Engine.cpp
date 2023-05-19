@@ -139,6 +139,38 @@ namespace WillEngine
 		}
 	}
 
+	void Engine::setFragmentShader()
+	{
+		const char* fragmentShaderSource =
+			"#version 330 core\n"
+			"out vec4 FragColor;\n"
+			"void main()\n"
+			"{\n"
+			"   FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+			"}\0";
+
+		unsigned int fragmentShader;
+
+		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+
+		glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+
+		glCompileShader(fragmentShader);
+
+		int  success;
+
+		char infoLog[512];
+
+		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+
+		if (!success)
+		{
+			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+
+			cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << endl;
+		}
+	}
+
 	void Engine::engineLoop()
 	{
 		while (!glfwWindowShouldClose(_window->getGLFWwindow()))
@@ -209,6 +241,8 @@ namespace WillEngine
 			setVertexData();
 
 			setVertexShader();
+
+			setFragmentShader();
 
 			engineLoop();
 		}
