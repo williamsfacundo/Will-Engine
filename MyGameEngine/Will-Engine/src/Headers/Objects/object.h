@@ -6,10 +6,15 @@ namespace WillEngine
 	class Object
 	{
 	private:
+		unsigned int _vertexArray;
 
 	public:
 		Object();
 		~Object();
+
+		void createObject();
+
+		void selectObject();
 	};
 }
 
