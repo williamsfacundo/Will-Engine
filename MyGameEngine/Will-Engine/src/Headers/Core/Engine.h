@@ -40,6 +40,8 @@ namespace WillEngine
 		void setVertexShader();
 
 		void setFragmentShader();
+
+		void setShaderProgram();
 #pragma endregion
 
 #pragma region UPDATE
