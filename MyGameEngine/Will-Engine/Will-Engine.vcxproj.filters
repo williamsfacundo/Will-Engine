@@ -21,7 +21,7 @@
     <ClCompile Include="src\Implementations\Core\window.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Implementations\Core\Engine.cpp">
+    <ClCompile Include="src\Implementations\Core\engine.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\Implementations\Core\callback_functions.cpp">
@@ -38,7 +38,7 @@
     <ClInclude Include="src\Headers\Core\window.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Headers\Core\Engine.h">
+    <ClInclude Include="src\Headers\Core\engine.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\Headers\Core\callback_functions.h">

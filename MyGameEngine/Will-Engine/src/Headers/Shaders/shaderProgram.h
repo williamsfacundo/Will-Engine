@@ -6,10 +6,15 @@ namespace WillEngine
 	class ShaderProgram
 	{
 	private:
+		unsigned int _shaderProgram;
 
 	public:
 		ShaderProgram();
 		~ShaderProgram();
+
+		unsigned int getShaderProgram();
+
+		void generateShaderProgram();
 	};
 }
 
