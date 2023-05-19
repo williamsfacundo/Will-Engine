@@ -111,4 +111,9 @@ namespace WillEngine
 		_shaderProgram = shaderProgram;
 #pragma endregion
 	}
+
+	void ShaderProgram::useShaderProgram()
+	{
+		glUseProgram(_shaderProgram);
+	}
 }

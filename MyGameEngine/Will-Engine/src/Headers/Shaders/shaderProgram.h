@@ -15,6 +15,8 @@ namespace WillEngine
 		unsigned int getShaderProgram();
 
 		void generateShaderProgram();
+
+		void useShaderProgram();
 	};
 }
 
