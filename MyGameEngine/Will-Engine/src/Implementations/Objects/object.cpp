@@ -15,6 +15,11 @@ namespace WillEngine
 
 	}
 
+	int Object::getAmountOfIndexes()
+	{
+		return 6;
+	}
+
 	void Object::createObject()
 	{
 #pragma region INITIALIZATION

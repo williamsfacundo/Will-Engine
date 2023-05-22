@@ -12,6 +12,8 @@ namespace WillEngine
 		Object();
 		~Object();
 
+		int getAmountOfIndexes();
+
 		void createObject();
 
 		void selectObject();

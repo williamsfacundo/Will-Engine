@@ -53,9 +53,7 @@ namespace WillEngine
 #pragma endregion
 
 #pragma region UPDATE
-		void engineLoop();	
-
-		void drawTriangles();
+		void engineLoop();		
 #pragma endregion
 
 #pragma region DEINITIALIZATION

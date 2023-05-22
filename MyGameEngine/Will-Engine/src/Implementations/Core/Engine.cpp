@@ -126,24 +126,13 @@ namespace WillEngine
 			//Rendering
 			_renderer->renderingCommands();
 			
-			drawTriangles();
+			_renderer->drawObject(_shaderProgram, _object);
 
 			glfwSwapBuffers(_window->getGLFWwindow());
 
 			glfwPollEvents();
 		}
 	}	
-
-	void Engine::drawTriangles()
-	{
-		_shaderProgram->useShaderProgram();
-		
-		_object->selectObject();
-		
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-		glBindVertexArray(0);	
-	}
 
 	void Engine::engineDeinitialization()
 	{
