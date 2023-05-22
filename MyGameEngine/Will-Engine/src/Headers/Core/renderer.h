@@ -10,6 +10,8 @@ namespace WillEngine
 	public:
 		Renderer();
 		~Renderer();
+
+		void renderingCommands();
 	};
 }
 

@@ -102,6 +102,11 @@ namespace WillEngine
 		_object->createObject();
 	}	
 
+	void Engine::setRenderer()
+	{
+		_renderer = new Renderer();
+	}
+
 	void Engine::engineLoop()
 	{
 		while (!glfwWindowShouldClose(_window->getGLFWwindow()))
@@ -110,7 +115,7 @@ namespace WillEngine
 			processInput();
 
 			//Rendering
-			RenderingCommands();			
+			_renderer->renderingCommands();
 			
 			drawTriangles();
 
@@ -128,12 +133,12 @@ namespace WillEngine
 		}
 	}	
 
-	void Engine::RenderingCommands()
+	/*void Engine::RenderingCommands()
 	{
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
 		glClear(GL_COLOR_BUFFER_BIT);
-	}
+	}*/
 
 	void Engine::drawTriangles()
 	{
@@ -160,6 +165,8 @@ namespace WillEngine
 		if (_shaderProgram != nullptr) { delete _shaderProgram; }
 
 		if (_object != nullptr) { delete _object; }
+
+		if (_renderer != nullptr) { delete _renderer; }
 	}
 
 	void Engine::closeGLFW()
@@ -178,6 +185,8 @@ namespace WillEngine
 
 		_object = nullptr;
 
+		_renderer = nullptr;
+
 		_shaderProgram = 0;		
 
 		_isGLFWInited = false;
@@ -194,7 +203,9 @@ namespace WillEngine
 		{
 			setShaderProgram();		
 
-			setObjects();		
+			setObjects();
+
+			setRenderer();
 
 			engineLoop();
 		}

@@ -5,6 +5,7 @@
 #include <glfw3.h>
 
 #include "Core/window.h"
+#include "Core/renderer.h"
 #include "Shaders/shaderProgram.h"
 #include "Objects/object.h"
 
@@ -20,6 +21,7 @@ namespace WillEngine
 		Window* _window;
 		ShaderProgram* _shaderProgram;
 		Object* _object;	
+		Renderer* _renderer;
 
 		bool _isGLFWInited;
 #pragma endregion
@@ -42,14 +44,14 @@ namespace WillEngine
 		void setShaderProgram();
 
 		void setObjects();
+
+		void setRenderer();
 #pragma endregion
 
 #pragma region UPDATE
 		void engineLoop();
 
-		void processInput();
-
-		void RenderingCommands();
+		void processInput();		
 
 		void drawTriangles();
 #pragma endregion
