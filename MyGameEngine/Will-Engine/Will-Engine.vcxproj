@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="src\Implementations\Core\callback_functions.cpp" />
     <ClCompile Include="src\Implementations\Core\engine.cpp" />
+    <ClCompile Include="src\Implementations\Core\renderer.cpp" />
     <ClCompile Include="src\Implementations\Core\window.cpp" />
     <ClCompile Include="src\Implementations\main.cpp" />
     <ClCompile Include="src\Implementations\Objects\object.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
     <ClInclude Include="src\Headers\Core\callback_functions.h" />
     <ClInclude Include="src\Headers\Core\engine.h" />
+    <ClInclude Include="src\Headers\Core\renderer.h" />
     <ClInclude Include="src\Headers\Core\window.h" />
     <ClInclude Include="src\Headers\Objects\object.h" />
     <ClInclude Include="src\Headers\Shaders\shaderProgram.h" />
