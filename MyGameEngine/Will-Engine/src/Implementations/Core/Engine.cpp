@@ -97,6 +97,8 @@ namespace WillEngine
 		_shaderProgram = new ShaderProgram();
 
 		_shaderProgram->generateShaderProgram();
+
+		_shaderProgram->getColorUniform();
 	}
 
 	void Engine::setObjects()
@@ -122,6 +124,9 @@ namespace WillEngine
 		{
 			//Input
 			_input->processInput(_window);
+
+			//Update
+			_shaderProgram->updateColorUniform();
 
 			//Rendering
 			_renderer->renderingCommands();

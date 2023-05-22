@@ -12,17 +12,18 @@ namespace WillEngine
 	ShaderProgram::ShaderProgram()
 	{
 		_shaderProgram = 0;
+		_vertexColorLocation = -1;
 	}
 
 	ShaderProgram::~ShaderProgram()
 	{
-
+		
 	}	
 
 	void ShaderProgram::generateShaderProgram()
 	{
 #pragma region VERTEX_SHADER
-		const char* vertexShaderSource =
+		/*const char* vertexShaderSource =
 			"#version 330 core\n"
 			"layout (location = 0) in vec3 aPos;\n"
 			"out vec4 vertexColor;\n"
@@ -30,6 +31,14 @@ namespace WillEngine
 			"{\n"
 			"   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
 			"	vertexColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+			"}\0";*/
+
+		const char* vertexShaderSource =
+			"#version 330 core\n"
+			"layout (location = 0) in vec3 aPos;\n"			
+			"void main()\n"
+			"{\n"
+			"   gl_Position = vec4(aPos, 1.0);\n"			
 			"}\0";
 
 		unsigned int vertexShader;
@@ -55,13 +64,22 @@ namespace WillEngine
 #pragma endregion
 
 #pragma region FRAGMENT_SHADER
-		const char* fragmentShaderSource =
+		/*const char* fragmentShaderSource =
 			"#version 330 core\n"
 			"in vec4 vertexColor;\n"
 			"out vec4 FragColor;\n"
 			"void main()\n"
 			"{\n"
 			"   FragColor = vertexColor;\n"
+			"}\0";*/
+
+		const char* fragmentShaderSource =
+			"#version 330 core\n"
+			"uniform vec4 ourColor;\n"
+			"out vec4 FragColor;\n"
+			"void main()\n"
+			"{\n"
+			"   FragColor = ourColor;\n"
 			"}\0";
 
 		unsigned int fragmentShader;
@@ -104,6 +122,24 @@ namespace WillEngine
 
 		glDeleteShader(fragmentShader);		
 #pragma endregion
+	}
+
+	void ShaderProgram::getColorUniform()
+	{
+		_vertexColorLocation = glGetUniformLocation(_shaderProgram, "ourColor");
+	}
+
+	void ShaderProgram::updateColorUniform()
+	{
+		float timeValue = glfwGetTime();
+		
+		float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
+		
+		glUseProgram(_shaderProgram);
+		
+		glUniform4f(_vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+		
+		glUseProgram(0);
 	}
 
 	void ShaderProgram::useShaderProgram()

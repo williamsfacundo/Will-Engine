@@ -8,11 +8,17 @@ namespace WillEngine
 	private:
 		unsigned int _shaderProgram;
 
+		int _vertexColorLocation;
+
 	public:
 		ShaderProgram();
 		~ShaderProgram();
 		
 		void generateShaderProgram();
+
+		void getColorUniform();
+
+		void updateColorUniform();
 
 		void useShaderProgram();
 	};
