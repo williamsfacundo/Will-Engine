@@ -12,5 +12,3 @@ int main()
 
     return 0;
 }
-
-//https://learnopengl.com/Getting-started/Hello-Triangle
