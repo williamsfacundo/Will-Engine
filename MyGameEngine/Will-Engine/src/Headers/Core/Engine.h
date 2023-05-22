@@ -6,6 +6,7 @@
 
 #include "Core/window.h"
 #include "Core/renderer.h"
+#include "Core/input.h"
 #include "Shaders/shaderProgram.h"
 #include "Objects/object.h"
 
@@ -22,6 +23,7 @@ namespace WillEngine
 		ShaderProgram* _shaderProgram;
 		Object* _object;	
 		Renderer* _renderer;
+		Input* _input;
 
 		bool _isGLFWInited;
 #pragma endregion
@@ -46,12 +48,12 @@ namespace WillEngine
 		void setObjects();
 
 		void setRenderer();
+
+		void setInput();
 #pragma endregion
 
 #pragma region UPDATE
-		void engineLoop();
-
-		void processInput();		
+		void engineLoop();	
 
 		void drawTriangles();
 #pragma endregion

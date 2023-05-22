@@ -6,6 +6,10 @@
 #include <glfw3.h>
 
 #include "Core/window.h"
+#include "Core/renderer.h"
+#include "Core/input.h"
+#include "Shaders/shaderProgram.h"
+#include "Objects/object.h"
 #include "Core/callback_functions.h"
 
 using namespace std;
@@ -107,12 +111,17 @@ namespace WillEngine
 		_renderer = new Renderer();
 	}
 
+	void Engine::setInput()
+	{
+		_input = new Input();
+	}
+
 	void Engine::engineLoop()
 	{
 		while (!glfwWindowShouldClose(_window->getGLFWwindow()))
 		{
 			//Input
-			processInput();
+			_input->processInput(_window);
 
 			//Rendering
 			_renderer->renderingCommands();
@@ -123,22 +132,7 @@ namespace WillEngine
 
 			glfwPollEvents();
 		}
-	}
-
-	void Engine::processInput()
-	{
-		if (glfwGetKey(_window->getGLFWwindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		{
-			glfwSetWindowShouldClose(_window->getGLFWwindow(), true);
-		}
 	}	
-
-	/*void Engine::RenderingCommands()
-	{
-		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-		glClear(GL_COLOR_BUFFER_BIT);
-	}*/
 
 	void Engine::drawTriangles()
 	{
@@ -167,6 +161,8 @@ namespace WillEngine
 		if (_object != nullptr) { delete _object; }
 
 		if (_renderer != nullptr) { delete _renderer; }
+
+		if (_input != nullptr) { delete _input; }
 	}
 
 	void Engine::closeGLFW()
@@ -187,6 +183,8 @@ namespace WillEngine
 
 		_renderer = nullptr;
 
+		_input = nullptr;
+
 		_shaderProgram = 0;		
 
 		_isGLFWInited = false;
@@ -206,6 +204,8 @@ namespace WillEngine
 			setObjects();
 
 			setRenderer();
+
+			setInput();
 
 			engineLoop();
 		}
