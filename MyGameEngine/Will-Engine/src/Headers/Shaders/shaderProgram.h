@@ -16,6 +16,12 @@ namespace WillEngine
 		
 		void generateShaderProgram();
 
+		void generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
+
+		const char* getShaderSourceCode();
+
+		unsigned int compileShader();
+
 		void getColorUniform();
 
 		void updateColorUniform();

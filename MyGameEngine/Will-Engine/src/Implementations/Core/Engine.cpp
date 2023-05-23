@@ -95,10 +95,9 @@ namespace WillEngine
 	void Engine::setShaderProgram()
 	{
 		_shaderProgram = new ShaderProgram();
-
-		_shaderProgram->generateShaderProgram();
-
-		_shaderProgram->getColorUniform();
+		
+		_shaderProgram->generateShaderProgramFromFiles("C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/vertex-shader-source.txt",
+			"C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/fragment-shader-source.txt");
 	}
 
 	void Engine::setObjects()
@@ -126,7 +125,7 @@ namespace WillEngine
 			_input->processInput(_window);
 
 			//Update
-			_shaderProgram->updateColorUniform();
+			//_shaderProgram->updateColorUniform();
 
 			//Rendering
 			_renderer->renderingCommands();

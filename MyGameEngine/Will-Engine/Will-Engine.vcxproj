@@ -171,6 +171,10 @@
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\Shaders\fragment-shader-source.txt" />
+    <Text Include="res\Shaders\vertex-shader-source.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
