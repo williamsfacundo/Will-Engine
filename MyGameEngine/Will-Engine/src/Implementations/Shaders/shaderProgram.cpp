@@ -112,43 +112,13 @@ namespace WillEngine
 
 	void ShaderProgram::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
 	{
-		string vertexCode;
-		string fragmentCode;
+		string vertexShaderString = getShaderSourceCode(vertexPath);
 
-		ifstream vertexShaderFile;
-		ifstream fragmentShaderFile;
-
-		vertexShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
-		fragmentShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
-
-		try
-		{
-			//open files
-			vertexShaderFile.open(vertexPath);
-			fragmentShaderFile.open(fragmentPath);
+		string fragmentShaderString = getShaderSourceCode(fragmentPath);
 			
-			stringstream vertexShaderStream, fragmentShaderStream;
-			
-			//read file's buffer contents into streams
-			vertexShaderStream << vertexShaderFile.rdbuf();
-			fragmentShaderStream << fragmentShaderFile.rdbuf();
-			
-			//close file handlers
-			vertexShaderFile.close();
-			fragmentShaderFile.close();
-			
-			//convert stream into string
-			vertexCode = vertexShaderStream.str();
-			fragmentCode = fragmentShaderStream.str();
-		}
-		catch (ifstream::failure e)
-		{
-			cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
-		}
+		const char* vertexShaderCode = vertexShaderString.c_str();
 
-		const char* vertexShaderCode = vertexCode.c_str();
-
-		const char* fragmentShaderCode = fragmentCode.c_str();
+		const char* fragmentShaderCode = fragmentShaderString.c_str();
 
 		unsigned int vertexShader;
 
@@ -209,10 +179,10 @@ namespace WillEngine
 
 		glDeleteShader(fragmentShader);
 	}
-
-	const char* getShaderSourceCode(const char* shaderSourceCodePath)
+	
+	string ShaderProgram::getShaderSourceCode(const char* shaderSourceCodePath)
 	{
-		string shaderCode;		
+		string shaderCode;
 
 		ifstream shaderFile;		
 
@@ -237,12 +207,12 @@ namespace WillEngine
 		catch (ifstream::failure e)
 		{
 			cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << endl;
-		}
+		}		
 
-		return shaderCode.c_str();	
+		return shaderCode;
 	}
 
-	unsigned int compileShader()
+	unsigned int ShaderProgram::compileShader()
 	{
 		return 0;
 	}

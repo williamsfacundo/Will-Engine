@@ -1,6 +1,10 @@
 #ifndef SHADER_PROGRAM
 #define SHADER_PROGRAM
 
+#include <string>
+
+using namespace std;
+
 namespace WillEngine
 {
 	class ShaderProgram
@@ -18,7 +22,7 @@ namespace WillEngine
 
 		void generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
 
-		const char* getShaderSourceCode();
+		string getShaderSourceCode(const char* shaderSourceCodePath);
 
 		unsigned int compileShader();
 
