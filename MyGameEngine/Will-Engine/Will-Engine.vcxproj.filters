@@ -48,6 +48,9 @@
     <ClCompile Include="src\Implementations\Textures\textureGenerator.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\Implementations\Textures\texture.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h">
@@ -83,6 +86,12 @@
     <ClInclude Include="src\Headers\Textures\textureGenerator.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\Headers\Textures\stb_image.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Headers\Textures\texture.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />
@@ -90,5 +99,10 @@
   <ItemGroup>
     <Text Include="res\Shaders\vertex-shader-source.txt" />
     <Text Include="res\Shaders\fragment-shader-source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Textures\image.png">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>

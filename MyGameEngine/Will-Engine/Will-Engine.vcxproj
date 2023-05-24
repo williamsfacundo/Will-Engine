@@ -160,6 +160,7 @@
     <ClCompile Include="src\Implementations\Shaders\shader.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shaderCreator.cpp" />
     <ClCompile Include="src\Implementations\Textures\textureGenerator.cpp" />
+    <ClCompile Include="src\Implementations\Textures\texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
@@ -172,7 +173,9 @@
     <ClInclude Include="src\Headers\Objects\object.h" />
     <ClInclude Include="src\Headers\Shaders\shader.h" />
     <ClInclude Include="src\Headers\Shaders\shaderCreator.h" />
+    <ClInclude Include="src\Headers\Textures\stb_image.h" />
     <ClInclude Include="src\Headers\Textures\textureGenerator.h" />
+    <ClInclude Include="src\Headers\Textures\texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />
@@ -180,6 +183,9 @@
   <ItemGroup>
     <Text Include="res\Shaders\fragment-shader-source.txt" />
     <Text Include="res\Shaders\vertex-shader-source.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\Textures\image.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

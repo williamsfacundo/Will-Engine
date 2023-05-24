@@ -9,6 +9,7 @@
 #include "Core/input.h"
 #include "Shaders/shader.h"
 #include "Objects/object.h"
+#include "Textures/texture.h"
 
 namespace WillEngine
 {
@@ -24,6 +25,7 @@ namespace WillEngine
 		Object* _object;	
 		Renderer* _renderer;
 		Input* _input;
+		Texture* _texture;
 
 		bool _isGLFWInited;
 #pragma endregion
@@ -50,6 +52,8 @@ namespace WillEngine
 		void setRenderer();
 
 		void setInput();
+
+		void setTexture();
 #pragma endregion
 
 #pragma region UPDATE

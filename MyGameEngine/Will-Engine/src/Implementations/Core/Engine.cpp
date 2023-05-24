@@ -11,6 +11,8 @@
 #include "Shaders/shader.h"
 #include "Objects/cube.h"
 #include "Core/callback_functions.h"
+#include "Textures/texture.h"
+#include "Textures/textureGenerator.h"
 
 using namespace std;
 
@@ -115,6 +117,11 @@ namespace WillEngine
 		_input = new Input();
 	}
 
+	void Engine::setTexture()
+	{
+		_texture = TextureGenerator::generateTexture("res/Textures/image.png");
+	}
+
 	void Engine::engineLoop()
 	{
 		while (!glfwWindowShouldClose(_window->getGLFWwindow()))
@@ -155,6 +162,8 @@ namespace WillEngine
 		if (_renderer != nullptr) { delete _renderer; }
 
 		if (_input != nullptr) { delete _input; }
+
+		if (_texture != nullptr) { delete _texture; }
 	}
 
 	void Engine::closeGLFW()
@@ -175,7 +184,9 @@ namespace WillEngine
 
 		_renderer = nullptr;
 
-		_input = nullptr;		
+		_input = nullptr;	
+
+		_texture = nullptr;
 
 		_isGLFWInited = false;
 	}
@@ -196,6 +207,8 @@ namespace WillEngine
 			setRenderer();
 
 			setInput();
+
+			setTexture();
 
 			engineLoop();
 		}
