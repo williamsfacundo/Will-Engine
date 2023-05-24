@@ -14,17 +14,17 @@ namespace WillEngine
 
 		int _vertexColorLocation;
 
-	public:
-		ShaderProgram();
-		~ShaderProgram();
-		
-		void generateShaderProgram();
-
-		void generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
-
 		string getShaderSourceCode(const char* shaderSourceCodePath);
 
 		unsigned int compileShader(const char* shaderSourceCode, bool isVertexShader);
+
+		unsigned int linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId);
+
+	public:
+		ShaderProgram();
+		~ShaderProgram();		
+
+		void generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
 
 		void getColorUniform();
 

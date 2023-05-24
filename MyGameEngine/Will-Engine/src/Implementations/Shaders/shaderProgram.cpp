@@ -22,163 +22,34 @@ namespace WillEngine
 		
 	}	
 
-	void ShaderProgram::generateShaderProgram()
-	{
-#pragma region VERTEX_SHADER
-		const char* vertexShaderSource =
-			"#version 330 core\n"
-			"layout (location = 0) in vec3 aPos;\n"
-			"layout (location = 1) in vec3 aColor;\n"
-			"out vec3 ourColor;\n"
-			"void main()\n"
-			"{\n"
-			"   gl_Position = vec4(aPos, 1.0);\n"
-			"	ourColor = aColor;"
-			"}\n";
-
-		unsigned int vertexShader;
-
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
-
-		glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-
-		glCompileShader(vertexShader);
-
-		int  success;
-
-		char infoLog[512];
-
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-
-		if (!success)
-		{
-			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-
-			cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
-		}
-#pragma endregion
-
-#pragma region FRAGMENT_SHADER
-		const char* fragmentShaderSource =
-			"#version 330 core\n"
-			"in vec3 ourColor;\n"
-			"out vec4 FragColor;\n"
-			"void main()\n"
-			"{\n"
-			"   FragColor = vec4(ourColor, 1.0);\n"
-			"}\n";
-
-		unsigned int fragmentShader;
-
-		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-		glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-
-		glCompileShader(fragmentShader);		
-
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-
-		if (!success)
-		{
-			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-
-			cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << endl;
-		}
-#pragma endregion
-
-#pragma region SHADER_PROGRM
-		_shaderProgram = glCreateProgram();
-
-		glAttachShader(_shaderProgram, vertexShader);
-
-		glAttachShader(_shaderProgram, fragmentShader);
-
-		glLinkProgram(_shaderProgram);
-
-		glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &success);
-
-		if (!success)
-		{
-			glGetProgramInfoLog(_shaderProgram, 512, NULL, infoLog);
-
-			cout << "ERROR::PROGRAM::SHADER::LINKING_FAILED\n" << infoLog << endl;
-		}
-
-		glDeleteShader(vertexShader);
-
-		glDeleteShader(fragmentShader);	
-#pragma endregion
-	}
-
-	void ShaderProgram::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
-	{
-		//Get the shaders source code from files
-		string vertexShaderString = getShaderSourceCode(vertexPath);
-
-		string fragmentShaderString = getShaderSourceCode(fragmentPath);
-			
-		const char* vertexShaderCode = vertexShaderString.c_str();
-
-		const char* fragmentShaderCode = fragmentShaderString.c_str();
-
-		//Generate shaders
-
-		unsigned int vertexShader = compileShader(vertexShaderCode, true);		
-
-		unsigned int fragmentShader = compileShader(fragmentShaderCode, false);		
-
-		//Link the shaders to create program
-
-		_shaderProgram = glCreateProgram();
-
-		glAttachShader(_shaderProgram, vertexShader);
-
-		glAttachShader(_shaderProgram, fragmentShader);
-
-		glLinkProgram(_shaderProgram);
-
-		/*glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &success);
-
-		if (!success)
-		{
-			glGetProgramInfoLog(_shaderProgram, 512, NULL, infoLog);
-
-			cout << "ERROR::PROGRAM::SHADER::LINKING_FAILED\n" << infoLog << endl;
-		}*/
-
-		glDeleteShader(vertexShader);
-
-		glDeleteShader(fragmentShader);
-	}
-	
 	string ShaderProgram::getShaderSourceCode(const char* shaderSourceCodePath)
 	{
 		string shaderCode;
 
-		ifstream shaderFile;		
+		ifstream shaderFile;
 
 		shaderFile.exceptions(ifstream::failbit | ifstream::badbit);
-		
+
 		try
 		{
 			//open files
 			shaderFile.open(shaderSourceCodePath);
-			
+
 			stringstream shaderStream;
 
 			//read file's buffer contents into streams
-			shaderStream << shaderFile.rdbuf();			
+			shaderStream << shaderFile.rdbuf();
 
 			//close file handlers
-			shaderFile.close();			
+			shaderFile.close();
 
 			//convert stream into string
-			shaderCode = shaderStream.str();			
+			shaderCode = shaderStream.str();
 		}
 		catch (ifstream::failure e)
 		{
 			cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << endl;
-		}		
+		}
 
 		return shaderCode;
 	}
@@ -191,7 +62,7 @@ namespace WillEngine
 
 		char infoLog[512];
 
-		if(isVertexShader)
+		if (isVertexShader)
 		{
 			shaderId = glCreateShader(GL_VERTEX_SHADER);
 		}
@@ -214,6 +85,60 @@ namespace WillEngine
 		}
 
 		return shaderId;
+	}
+
+	unsigned int ShaderProgram::linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId)
+	{
+		int  success;
+
+		char infoLog[512];
+
+		unsigned int shaderProgramId = glCreateProgram();
+
+		glAttachShader(shaderProgramId, vertexShaderId);
+
+		glAttachShader(shaderProgramId, fragmentShaderId);
+
+		glLinkProgram(shaderProgramId);
+
+		glGetProgramiv(shaderProgramId, GL_LINK_STATUS, &success);
+
+		if (!success)
+		{
+			glGetProgramInfoLog(shaderProgramId, 512, NULL, infoLog);
+
+			cout << "ERROR::PROGRAM::SHADER::LINKING_FAILED\n" << infoLog << endl;
+		}
+
+		glDeleteShader(vertexShaderId);
+
+		glDeleteShader(fragmentShaderId);
+
+		return shaderProgramId;
+	}
+
+	void ShaderProgram::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
+	{
+		//Get the shaders source code from files
+		string vertexShaderString = getShaderSourceCode(vertexPath);
+
+		string fragmentShaderString = getShaderSourceCode(fragmentPath);
+			
+		const char* vertexShaderCode = vertexShaderString.c_str();
+
+		const char* fragmentShaderCode = fragmentShaderString.c_str();
+
+		//Generate shaders
+
+		unsigned int vertexShaderId = compileShader(vertexShaderCode, true);		
+
+		unsigned int fragmentShaderId = compileShader(fragmentShaderCode, false);		
+
+		//Link the shaders to create program
+
+		unsigned int shaderProgramId = linkShaders(vertexShaderId, fragmentShaderId);
+
+		_shaderProgram = shaderProgramId;
 	}
 
 	void ShaderProgram::getColorUniform()
