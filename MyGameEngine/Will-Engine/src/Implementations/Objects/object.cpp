@@ -5,22 +5,7 @@
 
 namespace WillEngine
 {
-	Object::Object()
-	{
-		_vertexArray = 0;
-	}
-
-	Object::~Object()
-	{
-
-	}
-
-	int Object::getAmountOfIndexes()
-	{
-		return 6;
-	}
-
-	void Object::createObject()
+	void Object::setData()
 	{
 #pragma region INITIALIZATION
 		//First 3 position, other 3 are colors
@@ -30,7 +15,7 @@ namespace WillEngine
 			0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // bottom right
 			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,  // bottom left
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f   // top left 
-		};	
+		};
 
 		unsigned int indices[] =
 		{
@@ -38,7 +23,7 @@ namespace WillEngine
 			1, 2, 3    // second triangle
 		};
 
-		unsigned int VBO;		
+		unsigned int VBO;
 		unsigned int EBO;
 
 		glGenBuffers(1, &VBO);
@@ -66,16 +51,45 @@ namespace WillEngine
 
 		// color attribute
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-		
+
 		glEnableVertexAttribArray(1);
 
 		glBindVertexArray(0); //This must be unbined first not to save unbined buffers 
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);		
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 #pragma endregion
 	}
+
+	Object::Object()
+	{
+		_shader = nullptr;
+
+		_vertexArray = 0;
+	}
+
+	Object::~Object()
+	{
+
+	}
+
+	Shader* Object::getShader()
+	{
+		return _shader;
+	}
+
+	int Object::getAmountOfIndexes()
+	{
+		return 6;
+	}
+
+	void Object::createObject(Shader* objectShader)
+	{
+		_shader = objectShader;
+
+		setData();
+	}	
 
 	void Object::selectObject()
 	{

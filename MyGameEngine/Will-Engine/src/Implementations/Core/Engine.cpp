@@ -92,7 +92,7 @@ namespace WillEngine
 		glfwSetFramebufferSizeCallback(_window->getGLFWwindow(), framebuffer_size_callback);
 	}	
 
-	void Engine::setShaderProgram()
+	void Engine::setShaders()
 	{
 		_shader = new Shader("C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/vertex-shader-source.txt",
 			"C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/fragment-shader-source.txt");	
@@ -102,7 +102,7 @@ namespace WillEngine
 	{
 		_object = new Object();
 
-		_object->createObject();
+		_object->createObject(_shader);
 	}	
 
 	void Engine::setRenderer()
@@ -128,8 +128,9 @@ namespace WillEngine
 			//Rendering
 			_renderer->renderingCommands();
 			
-			_renderer->drawObject(_shader, _object);
+			_renderer->drawObject(_object);
 
+			//GLFW commands
 			glfwSwapBuffers(_window->getGLFWwindow());
 
 			glfwPollEvents();
@@ -188,7 +189,7 @@ namespace WillEngine
 	{
 		if (engineInitialization() == SUCCESSFUL_INITIALIZATION)
 		{
-			setShaderProgram();		
+			setShaders();		
 
 			setObjects();
 

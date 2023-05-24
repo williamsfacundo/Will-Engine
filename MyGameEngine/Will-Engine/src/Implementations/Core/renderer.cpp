@@ -25,9 +25,9 @@ namespace WillEngine
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::drawObject(Shader* shader, Object* object)
+	void Renderer::drawObject(Object* object)
 	{
-		shader->useShaderProgram();
+		object->getShader()->useShaderProgram();
 
 		object->selectObject();
 

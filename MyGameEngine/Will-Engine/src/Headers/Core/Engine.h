@@ -43,7 +43,7 @@ namespace WillEngine
 
 		void gLFWCallbackFunstionsRegister();
 
-		void setShaderProgram();
+		void setShaders();
 
 		void setObjects();
 

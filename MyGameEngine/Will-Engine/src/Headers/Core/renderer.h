@@ -16,7 +16,7 @@ namespace WillEngine
 
 		void renderingCommands();
 
-		void drawObject(Shader* shader, Object* object);
+		static void drawObject(Object* object);
 	};
 }
 
