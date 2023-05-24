@@ -8,7 +8,7 @@
 #include "Core/window.h"
 #include "Core/renderer.h"
 #include "Core/input.h"
-#include "Shaders/shaderCreator.h"
+#include "Shaders/shader.h"
 #include "Objects/object.h"
 #include "Core/callback_functions.h"
 
@@ -94,10 +94,8 @@ namespace WillEngine
 
 	void Engine::setShaderProgram()
 	{
-		_shaderProgram = new ShaderCreator();
-		
-		_shaderProgram->generateShaderProgramFromFiles("C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/vertex-shader-source.txt",
-			"C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/fragment-shader-source.txt");
+		_shader = new Shader("C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/vertex-shader-source.txt",
+			"C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/fragment-shader-source.txt");		
 	}
 
 	void Engine::setObjects()
@@ -130,7 +128,7 @@ namespace WillEngine
 			//Rendering
 			_renderer->renderingCommands();
 			
-			_renderer->drawObject(_shaderProgram, _object);
+			_renderer->drawObject(_shader, _object);
 
 			glfwSwapBuffers(_window->getGLFWwindow());
 
@@ -149,7 +147,7 @@ namespace WillEngine
 	{
 		if (_window != nullptr) { delete _window; }
 
-		if (_shaderProgram != nullptr) { delete _shaderProgram; }
+		if (_shader != nullptr) { delete _shader; }
 
 		if (_object != nullptr) { delete _object; }
 
@@ -170,22 +168,20 @@ namespace WillEngine
 	{
 		_window = nullptr;		
 		
-		_shaderProgram = nullptr;
+		_shader = nullptr;
 
 		_object = nullptr;
 
 		_renderer = nullptr;
 
-		_input = nullptr;
-
-		_shaderProgram = 0;		
+		_input = nullptr;		
 
 		_isGLFWInited = false;
 	}
 
 	Engine::~Engine()
 	{
-
+		engineDeinitialization();
 	}	
 
 	void Engine::runEngine()
@@ -202,7 +198,5 @@ namespace WillEngine
 
 			engineLoop();
 		}
-
-		engineDeinitialization();
 	}
 }

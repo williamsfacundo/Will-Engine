@@ -10,27 +10,27 @@ namespace WillEngine
 	class ShaderCreator
 	{
 	private:
-		unsigned int _shaderProgram;
+		//unsigned int _shaderProgram;
 
-		int _vertexColorLocation;
+		//int _vertexColorLocation;
 
-		string getShaderSourceCode(const char* shaderSourceCodePath);
+		static string getShaderSourceCode(const char* shaderSourceCodePath);
 
-		unsigned int compileShader(const char* shaderSourceCode, bool isVertexShader);
+		static unsigned int compileShader(const char* shaderSourceCode, bool isVertexShader);
 
-		unsigned int linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId);
+		static unsigned int linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId);
 
 	public:
-		ShaderCreator();
-		~ShaderCreator();		
+		//ShaderCreator();
+		//~ShaderCreator();		
 
-		void generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
+		static unsigned int generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
 
-		void getColorUniform();
+		//void getColorUniform();
 
-		void updateColorUniform();
+		//void updateColorUniform();
 
-		void useShaderProgram();
+		//void useShaderProgram();
 	};
 }
 

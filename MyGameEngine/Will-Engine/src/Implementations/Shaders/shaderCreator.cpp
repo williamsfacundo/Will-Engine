@@ -11,16 +11,16 @@ using namespace std;
 
 namespace WillEngine
 {
-	ShaderCreator::ShaderCreator()
+	/*ShaderCreator::ShaderCreator()
 	{
-		_shaderProgram = 0;
-		_vertexColorLocation = -1;
+		//_shaderProgram = 0;
+		//_vertexColorLocation = -1;
 	}
 
 	ShaderCreator::~ShaderCreator()
 	{
 		
-	}	
+	}*/	
 
 	string ShaderCreator::getShaderSourceCode(const char* shaderSourceCodePath)
 	{
@@ -117,7 +117,7 @@ namespace WillEngine
 		return shaderProgramId;
 	}
 
-	void ShaderCreator::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
+	unsigned int ShaderCreator::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
 	{
 		//Get the shaders source code from files
 		string vertexShaderString = getShaderSourceCode(vertexPath);
@@ -138,10 +138,10 @@ namespace WillEngine
 
 		unsigned int shaderProgramId = linkShaders(vertexShaderId, fragmentShaderId);
 
-		_shaderProgram = shaderProgramId;
+		return shaderProgramId;
 	}
 
-	void ShaderCreator::getColorUniform()
+	/*void ShaderCreator::getColorUniform()
 	{
 		_vertexColorLocation = glGetUniformLocation(_shaderProgram, "ourColor");
 
@@ -167,5 +167,5 @@ namespace WillEngine
 	void ShaderCreator::useShaderProgram()
 	{
 		glUseProgram(_shaderProgram);
-	}
+	}*/
 }

@@ -3,7 +3,7 @@
 #include <glew.h>
 #include <glfw3.h>
 
-#include "Shaders/shaderCreator.h"
+#include "Shaders/shader.h"
 #include "Objects/object.h"
 
 namespace WillEngine
@@ -25,9 +25,9 @@ namespace WillEngine
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::drawObject(ShaderCreator* shaderProgram, Object* object)
+	void Renderer::drawObject(Shader* shader, Object* object)
 	{
-		shaderProgram->useShaderProgram();
+		shader->useShaderProgram();
 
 		object->selectObject();
 
