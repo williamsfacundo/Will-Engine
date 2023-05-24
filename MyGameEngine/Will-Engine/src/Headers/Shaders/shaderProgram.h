@@ -24,7 +24,7 @@ namespace WillEngine
 
 		string getShaderSourceCode(const char* shaderSourceCodePath);
 
-		unsigned int compileShader();
+		unsigned int compileShader(const char* shaderSourceCode, bool isVertexShader);
 
 		void getColorUniform();
 

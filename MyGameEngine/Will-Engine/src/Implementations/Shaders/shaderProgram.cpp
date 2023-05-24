@@ -112,6 +112,7 @@ namespace WillEngine
 
 	void ShaderProgram::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
 	{
+		//Get the shaders source code from files
 		string vertexShaderString = getShaderSourceCode(vertexPath);
 
 		string fragmentShaderString = getShaderSourceCode(fragmentPath);
@@ -120,43 +121,13 @@ namespace WillEngine
 
 		const char* fragmentShaderCode = fragmentShaderString.c_str();
 
-		unsigned int vertexShader;
+		//Generate shaders
 
-		vertexShader = glCreateShader(GL_VERTEX_SHADER);
+		unsigned int vertexShader = compileShader(vertexShaderCode, true);		
 
-		glShaderSource(vertexShader, 1, &vertexShaderCode, NULL);
+		unsigned int fragmentShader = compileShader(fragmentShaderCode, false);		
 
-		glCompileShader(vertexShader);
-
-		int  success;
-
-		char infoLog[512];
-
-		glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-
-		if (!success)
-		{
-			glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-
-			cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
-		}
-
-		unsigned int fragmentShader;
-
-		fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-		glShaderSource(fragmentShader, 1, &fragmentShaderCode, NULL);
-
-		glCompileShader(fragmentShader);
-
-		glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-
-		if (!success)
-		{
-			glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-
-			cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << endl;
-		}
+		//Link the shaders to create program
 
 		_shaderProgram = glCreateProgram();
 
@@ -166,14 +137,14 @@ namespace WillEngine
 
 		glLinkProgram(_shaderProgram);
 
-		glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &success);
+		/*glGetProgramiv(_shaderProgram, GL_LINK_STATUS, &success);
 
 		if (!success)
 		{
 			glGetProgramInfoLog(_shaderProgram, 512, NULL, infoLog);
 
 			cout << "ERROR::PROGRAM::SHADER::LINKING_FAILED\n" << infoLog << endl;
-		}
+		}*/
 
 		glDeleteShader(vertexShader);
 
@@ -212,9 +183,37 @@ namespace WillEngine
 		return shaderCode;
 	}
 
-	unsigned int ShaderProgram::compileShader()
+	unsigned int ShaderProgram::compileShader(const char* shaderSourceCode, bool isVertexShader)
 	{
-		return 0;
+		unsigned int shaderId;
+
+		int  success;
+
+		char infoLog[512];
+
+		if(isVertexShader)
+		{
+			shaderId = glCreateShader(GL_VERTEX_SHADER);
+		}
+		else
+		{
+			shaderId = glCreateShader(GL_FRAGMENT_SHADER);
+		}
+
+		glShaderSource(shaderId, 1, &shaderSourceCode, NULL);
+
+		glCompileShader(shaderId);
+
+		glGetShaderiv(shaderId, GL_COMPILE_STATUS, &success);
+
+		if (!success)
+		{
+			glGetShaderInfoLog(shaderId, 512, NULL, infoLog);
+
+			cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
+		}
+
+		return shaderId;
 	}
 
 	void ShaderProgram::getColorUniform()
