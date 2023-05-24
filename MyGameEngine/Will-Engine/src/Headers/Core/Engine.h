@@ -7,7 +7,7 @@
 #include "Core/window.h"
 #include "Core/renderer.h"
 #include "Core/input.h"
-#include "Shaders/shaderProgram.h"
+#include "Shaders/shaderCreator.h"
 #include "Objects/object.h"
 
 namespace WillEngine
@@ -20,7 +20,7 @@ namespace WillEngine
 	private:
 #pragma region VARIABLES
 		Window* _window;
-		ShaderProgram* _shaderProgram;
+		ShaderCreator* _shaderProgram;
 		Object* _object;	
 		Renderer* _renderer;
 		Input* _input;

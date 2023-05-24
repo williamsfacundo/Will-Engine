@@ -8,7 +8,7 @@
 #include "Core/window.h"
 #include "Core/renderer.h"
 #include "Core/input.h"
-#include "Shaders/shaderProgram.h"
+#include "Shaders/shaderCreator.h"
 #include "Objects/object.h"
 #include "Core/callback_functions.h"
 
@@ -94,7 +94,7 @@ namespace WillEngine
 
 	void Engine::setShaderProgram()
 	{
-		_shaderProgram = new ShaderProgram();
+		_shaderProgram = new ShaderCreator();
 		
 		_shaderProgram->generateShaderProgramFromFiles("C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/vertex-shader-source.txt",
 			"C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/fragment-shader-source.txt");

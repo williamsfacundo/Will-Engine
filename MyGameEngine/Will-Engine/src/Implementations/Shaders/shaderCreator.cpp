@@ -1,4 +1,4 @@
-#include "Shaders/shaderProgram.h"
+#include "Shaders/shaderCreator.h"
 
 #include <iostream>
 #include <fstream>
@@ -11,18 +11,18 @@ using namespace std;
 
 namespace WillEngine
 {
-	ShaderProgram::ShaderProgram()
+	ShaderCreator::ShaderCreator()
 	{
 		_shaderProgram = 0;
 		_vertexColorLocation = -1;
 	}
 
-	ShaderProgram::~ShaderProgram()
+	ShaderCreator::~ShaderCreator()
 	{
 		
 	}	
 
-	string ShaderProgram::getShaderSourceCode(const char* shaderSourceCodePath)
+	string ShaderCreator::getShaderSourceCode(const char* shaderSourceCodePath)
 	{
 		string shaderCode;
 
@@ -54,7 +54,7 @@ namespace WillEngine
 		return shaderCode;
 	}
 
-	unsigned int ShaderProgram::compileShader(const char* shaderSourceCode, bool isVertexShader)
+	unsigned int ShaderCreator::compileShader(const char* shaderSourceCode, bool isVertexShader)
 	{
 		unsigned int shaderId;
 
@@ -87,7 +87,7 @@ namespace WillEngine
 		return shaderId;
 	}
 
-	unsigned int ShaderProgram::linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId)
+	unsigned int ShaderCreator::linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId)
 	{
 		int  success;
 
@@ -117,7 +117,7 @@ namespace WillEngine
 		return shaderProgramId;
 	}
 
-	void ShaderProgram::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
+	void ShaderCreator::generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath)
 	{
 		//Get the shaders source code from files
 		string vertexShaderString = getShaderSourceCode(vertexPath);
@@ -141,7 +141,7 @@ namespace WillEngine
 		_shaderProgram = shaderProgramId;
 	}
 
-	void ShaderProgram::getColorUniform()
+	void ShaderCreator::getColorUniform()
 	{
 		_vertexColorLocation = glGetUniformLocation(_shaderProgram, "ourColor");
 
@@ -151,7 +151,7 @@ namespace WillEngine
 		}
 	}
 
-	void ShaderProgram::updateColorUniform()
+	void ShaderCreator::updateColorUniform()
 	{
 		double timeValue = glfwGetTime();
 		
@@ -164,7 +164,7 @@ namespace WillEngine
 		glUseProgram(0);
 	}
 
-	void ShaderProgram::useShaderProgram()
+	void ShaderCreator::useShaderProgram()
 	{
 		glUseProgram(_shaderProgram);
 	}

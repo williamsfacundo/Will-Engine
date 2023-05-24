@@ -1,7 +1,7 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "Shaders/shaderProgram.h"
+#include "Shaders/shaderCreator.h"
 #include "Objects/object.h"
 
 namespace WillEngine
@@ -16,7 +16,7 @@ namespace WillEngine
 
 		void renderingCommands();
 
-		void drawObject(ShaderProgram* shaderProgram, Object* object);
+		void drawObject(ShaderCreator* shaderProgram, Object* object);
 	};
 }
 

@@ -1,5 +1,5 @@
-#ifndef SHADER_PROGRAM
-#define SHADER_PROGRAM
+#ifndef SHADER_CREATOR
+#define SHADER_CREATOR
 
 #include <string>
 
@@ -7,7 +7,7 @@ using namespace std;
 
 namespace WillEngine
 {
-	class ShaderProgram
+	class ShaderCreator
 	{
 	private:
 		unsigned int _shaderProgram;
@@ -21,8 +21,8 @@ namespace WillEngine
 		unsigned int linkShaders(unsigned int vertexShaderId, unsigned int fragmentShaderId);
 
 	public:
-		ShaderProgram();
-		~ShaderProgram();		
+		ShaderCreator();
+		~ShaderCreator();		
 
 		void generateShaderProgramFromFiles(const char* vertexPath, const char* fragmentPath);
 

@@ -156,7 +156,7 @@
     <ClCompile Include="src\Implementations\Core\window.cpp" />
     <ClCompile Include="src\Implementations\main.cpp" />
     <ClCompile Include="src\Implementations\Objects\object.cpp" />
-    <ClCompile Include="src\Implementations\Shaders\shaderProgram.cpp" />
+    <ClCompile Include="src\Implementations\Shaders\shaderCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
@@ -166,7 +166,7 @@
     <ClInclude Include="src\Headers\Core\renderer.h" />
     <ClInclude Include="src\Headers\Core\window.h" />
     <ClInclude Include="src\Headers\Objects\object.h" />
-    <ClInclude Include="src\Headers\Shaders\shaderProgram.h" />
+    <ClInclude Include="src\Headers\Shaders\shaderCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />

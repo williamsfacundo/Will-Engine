@@ -27,7 +27,7 @@
     <ClCompile Include="src\Implementations\Core\callback_functions.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Implementations\Shaders\shaderProgram.cpp">
+    <ClCompile Include="src\Implementations\Shaders\shaderCreator.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\Implementations\Objects\object.cpp">
@@ -53,7 +53,7 @@
     <ClInclude Include="src\Headers\Core\callback_functions.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Headers\Shaders\shaderProgram.h">
+    <ClInclude Include="src\Headers\Shaders\shaderCreator.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\Headers\Objects\object.h">
