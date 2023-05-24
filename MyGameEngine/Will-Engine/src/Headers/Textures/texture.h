@@ -22,6 +22,8 @@ namespace WillEngine
 		int getWidth();
 		int getHeight();
 		int getNRChannels();
+
+		void selectTexture();
 	};
 }
 

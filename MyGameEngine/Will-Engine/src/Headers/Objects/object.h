@@ -2,6 +2,7 @@
 #define OBJECT_H
 
 #include "Shaders/shader.h"
+#include "Textures/texture.h"
 
 namespace WillEngine
 {
@@ -9,6 +10,7 @@ namespace WillEngine
 	{
 	private:
 		Shader* _shader;
+		Texture* _texture;
 
 		unsigned int _vertexArray;
 
@@ -20,7 +22,11 @@ namespace WillEngine
 		Object();
 		~Object();
 
+		void setTexture(Texture* texture);
+
 		Shader* getShader();
+
+		Texture* getTexture();
 
 		virtual int getAmountOfIndexes() = 0;
 

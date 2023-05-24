@@ -1,5 +1,8 @@
 #include "Textures/texture.h"
 
+#include <glew.h>
+#include <glfw3.h>
+
 namespace WillEngine
 {
 	Texture::Texture(unsigned int textureId, int width, int height, int nrChannels)
@@ -36,5 +39,10 @@ namespace WillEngine
 	int Texture::getNRChannels()
 	{
 		return _nrChannels;
+	}
+
+	void Texture::selectTexture()
+	{
+		glBindTexture(GL_TEXTURE_2D, _textureId);
 	}
 }

@@ -104,7 +104,9 @@ namespace WillEngine
 	{
 		_object = new Cube();
 
-		_object->createObject(_shader);
+		_object->createObject(_shader);		
+	
+		_object->setTexture(_texture);
 	}	
 
 	void Engine::setRenderer()
@@ -202,13 +204,13 @@ namespace WillEngine
 		{
 			setShaders();		
 
+			setTexture();
+
 			setObjects();
 
 			setRenderer();
 
 			setInput();
-
-			setTexture();
 
 			engineLoop();
 		}

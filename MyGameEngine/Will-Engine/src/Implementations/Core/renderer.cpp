@@ -29,6 +29,8 @@ namespace WillEngine
 	{
 		object->getShader()->useShaderProgram();
 
+		object->getTexture()->selectTexture();
+
 		object->selectObject();
 
 		glDrawElements(GL_TRIANGLES, object->getAmountOfIndexes(), GL_UNSIGNED_INT, 0);
