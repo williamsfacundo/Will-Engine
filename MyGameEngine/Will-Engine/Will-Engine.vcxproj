@@ -155,6 +155,7 @@
     <ClCompile Include="src\Implementations\Core\renderer.cpp" />
     <ClCompile Include="src\Implementations\Core\window.cpp" />
     <ClCompile Include="src\Implementations\main.cpp" />
+    <ClCompile Include="src\Implementations\Objects\cube.cpp" />
     <ClCompile Include="src\Implementations\Objects\object.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shader.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shaderCreator.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="src\Headers\Core\input.h" />
     <ClInclude Include="src\Headers\Core\renderer.h" />
     <ClInclude Include="src\Headers\Core\window.h" />
+    <ClInclude Include="src\Headers\Objects\cube.h" />
     <ClInclude Include="src\Headers\Objects\object.h" />
     <ClInclude Include="src\Headers\Shaders\shader.h" />
     <ClInclude Include="src\Headers\Shaders\shaderCreator.h" />

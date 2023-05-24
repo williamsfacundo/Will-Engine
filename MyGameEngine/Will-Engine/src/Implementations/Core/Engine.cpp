@@ -9,7 +9,7 @@
 #include "Core/renderer.h"
 #include "Core/input.h"
 #include "Shaders/shader.h"
-#include "Objects/object.h"
+#include "Objects/cube.h"
 #include "Core/callback_functions.h"
 
 using namespace std;
@@ -100,7 +100,7 @@ namespace WillEngine
 
 	void Engine::setObjects()
 	{
-		_object = new Object();
+		_object = new Cube();
 
 		_object->createObject(_shader);
 	}	

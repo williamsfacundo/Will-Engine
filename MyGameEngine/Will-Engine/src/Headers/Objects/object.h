@@ -12,15 +12,17 @@ namespace WillEngine
 
 		unsigned int _vertexArray;
 
-		void setData();
+	protected:
+		virtual void setData() = 0;
 
+		void setVertexArray(unsigned int vertexArray);
 	public:
 		Object();
 		~Object();
 
 		Shader* getShader();
 
-		int getAmountOfIndexes();
+		virtual int getAmountOfIndexes() = 0;
 
 		void createObject(Shader* objectShader);		
 
