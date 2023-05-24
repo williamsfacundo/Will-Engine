@@ -229,13 +229,13 @@ namespace WillEngine
 
 	void ShaderProgram::updateColorUniform()
 	{
-		float timeValue = glfwGetTime();
+		double timeValue = glfwGetTime();
 		
-		float greenValue = (sin(timeValue) / 2.0f) + 0.5f;
+		double greenValue = (sin(timeValue) / 2.0f) + 0.5f;
 		
 		glUseProgram(_shaderProgram);
 		
-		glUniform4f(_vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+		glUniform4f(_vertexColorLocation, 0.0f, static_cast<GLfloat>(greenValue), 0.0f, 1.0f);
 		
 		glUseProgram(0);
 	}
