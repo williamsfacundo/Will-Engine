@@ -94,8 +94,8 @@ namespace WillEngine
 
 	void Engine::setShaders()
 	{
-		_shader = new Shader("C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/vertex-shader-source.txt",
-			"C:/Gráficos/Will-Engine/MyGameEngine/Will-Engine/res/Shaders/fragment-shader-source.txt");	
+		_shader = new Shader("res/Shaders/vertex-shader-source.txt",
+			"res/Shaders/fragment-shader-source.txt");
 	}
 
 	void Engine::setObjects()
