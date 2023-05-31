@@ -13,11 +13,17 @@ using namespace std;
 
 namespace WillEngine
 {
+	int TextureGenerator::TextureIndex = 0;
+
 	Texture* TextureGenerator::generateTexture(const char* texturePathFile)
 	{
 		unsigned int textureId;
 
+		stbi_set_flip_vertically_on_load(true);
+
 		glGenTextures(1, &textureId);
+
+		glActiveTexture(GL_TEXTURE0);
 
 		glBindTexture(GL_TEXTURE_2D, textureId);
 
@@ -25,8 +31,8 @@ namespace WillEngine
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);	
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);		
+
 		// load and generate the texture
 		int width, height, nrChannels;
 
@@ -43,7 +49,11 @@ namespace WillEngine
 			cout << "Failed to load texture" << endl;
 		}
 		
+		glBindTexture(GL_TEXTURE_2D, 0);
+
 		stbi_image_free(data);
+
+		TextureIndex += 1;
 
 		return new Texture(textureId, width, height, nrChannels);
 	}

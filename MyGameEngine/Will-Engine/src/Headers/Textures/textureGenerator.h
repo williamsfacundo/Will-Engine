@@ -8,6 +8,7 @@ namespace WillEngine
 	class TextureGenerator
 	{
 	private:
+		static int TextureIndex;
 
 	public:		
 

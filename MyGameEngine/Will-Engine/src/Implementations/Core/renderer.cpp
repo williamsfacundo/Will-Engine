@@ -38,5 +38,7 @@ namespace WillEngine
 		glBindVertexArray(0);
 
 		glUseProgram(0);
+
+		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 }
