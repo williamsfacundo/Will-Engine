@@ -157,6 +157,7 @@
     <ClCompile Include="src\Implementations\main.cpp" />
     <ClCompile Include="src\Implementations\Objects\cube.cpp" />
     <ClCompile Include="src\Implementations\Objects\object.cpp" />
+    <ClCompile Include="src\Implementations\Objects\transform.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shader.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shaderCreator.cpp" />
     <ClCompile Include="src\Implementations\Textures\textureGenerator.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="src\Headers\Core\window.h" />
     <ClInclude Include="src\Headers\Objects\cube.h" />
     <ClInclude Include="src\Headers\Objects\object.h" />
+    <ClInclude Include="src\Headers\Objects\transform.h" />
     <ClInclude Include="src\Headers\Shaders\shader.h" />
     <ClInclude Include="src\Headers\Shaders\shaderCreator.h" />
     <ClInclude Include="src\Headers\Textures\stb_image.h" />
