@@ -19,6 +19,8 @@ namespace WillEngine
 		void updateColorUniform();
 
 		void useShaderProgram();
+
+		unsigned int getUniformLocation(const char* uniformName);
 	};
 }
 

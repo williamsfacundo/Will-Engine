@@ -13,18 +13,25 @@ namespace WillEngine
 		_vertexArray = vertexArray;
 	}
 
+	void Object::setTransform(Transform* transform)
+	{
+		_transform = transform;
+	}
+
 	Object::Object()
 	{
 		_shader = nullptr;
 
 		_texture = nullptr;
 
+		_transform = nullptr;
+
 		_vertexArray = 0;
 	}
 
 	Object::~Object()
 	{
-
+		if (_transform != nullptr) { delete _transform; };
 	}
 
 	void Object::setTexture(Texture* texture)
@@ -42,9 +49,16 @@ namespace WillEngine
 		return _texture;
 	}
 
+	Transform* Object::getTransform()
+	{
+		return _transform;
+	}
+
 	void Object::createObject(Shader* objectShader)
 	{
-		_shader = objectShader;
+		_shader = objectShader;	
+
+		_transform = new Transform(_shader);
 
 		setData();
 	}	
