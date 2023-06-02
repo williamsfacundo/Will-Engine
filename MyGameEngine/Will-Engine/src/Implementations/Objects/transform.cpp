@@ -17,7 +17,7 @@ namespace WillEngine
 {
 	void Transform::updateModelMatrixUniformData()
 	{
-		glUniformMatrix4fv(_transformLocation, 1, GL_FALSE, value_ptr(_modelMatrix));
+		glUniformMatrix4fv(_transformLocation, 1, GL_FALSE, value_ptr(_modelMatrix));	
 	}
 
 	Transform::Transform(Shader* shader)

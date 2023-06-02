@@ -33,7 +33,7 @@ namespace WillEngine
 
 		object->getTexture()->selectTexture();
 
-		object->selectObject();		
+		object->selectObject();	
 
 		glDrawElements(GL_TRIANGLES, object->getAmountOfIndexes(), GL_UNSIGNED_INT, 0);
 

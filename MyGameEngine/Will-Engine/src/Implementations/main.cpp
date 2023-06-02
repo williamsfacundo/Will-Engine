@@ -1,10 +1,10 @@
-#include "Core/engine.h"
+#include "game.h"
 
 using namespace WillEngine;
 
 int main()
 {
-    Engine* engine = new Engine();
+    Game* engine = new Game();
 
     engine->runEngine();
 

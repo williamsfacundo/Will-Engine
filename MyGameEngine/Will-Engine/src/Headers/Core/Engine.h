@@ -14,7 +14,7 @@
 namespace WillEngine
 {
 #define SUCCESSFUL_INITIALIZATION 0
-#define INITIALIZATION_FAILED -1	
+#define INITIALIZATION_FAILED -1
 
 	class Engine
 	{
@@ -70,11 +70,28 @@ namespace WillEngine
 
 #pragma endregion
 
+	protected:
+		Engine(); //Create a game class and make it inherit from this one
+
+		//Create the objects for you game
+		virtual void userInitialization() = 0;
+
+		//Input goes here
+		virtual void userInput() = 0;
+
+		//Update positions and those stuf here
+		virtual void userUpdate() = 0;
+
+		//Call the draw function of objects here
+		virtual void userDraw() = 0;
+
+		//Delete the objects here
+		virtual void userDeinitialization() = 0;
+
 	public:	
-		Engine();
 		~Engine();
 
-		void runEngine();
+		void runEngine(); //Call this function one time to start the engine 
 	};
 }
 

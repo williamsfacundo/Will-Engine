@@ -154,6 +154,7 @@
     <ClCompile Include="src\Implementations\Core\input.cpp" />
     <ClCompile Include="src\Implementations\Core\renderer.cpp" />
     <ClCompile Include="src\Implementations\Core\window.cpp" />
+    <ClCompile Include="src\Implementations\game.cpp" />
     <ClCompile Include="src\Implementations\main.cpp" />
     <ClCompile Include="src\Implementations\Objects\cube.cpp" />
     <ClCompile Include="src\Implementations\Objects\object.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="src\Headers\Textures\stb_image.h" />
     <ClInclude Include="src\Headers\Textures\textureGenerator.h" />
     <ClInclude Include="src\Headers\Textures\texture.h" />
+    <ClInclude Include="src\Implementations\game.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />
