@@ -12,40 +12,40 @@ namespace WillEngine
 		float vertices[] =
 		{
 			//Front face
-			-0.5f, -0.5f, 0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
-			 0.5f, -0.5f, 0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
-			 0.5f,  0.5f, 0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // Top-right
-			-0.5f,  0.5f, 0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top-left
+			-0.5f, -0.5f, 0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f, // Bottom-left
+			 0.5f, -0.5f, 0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f, // Bottom-right
+			 0.5f,  0.5f, 0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f, // Top-right
+			-0.5f,  0.5f, 0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f, // Top-left
 
 			//Back Face
-			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 0.0f, // Bottom-left
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, // Bottom-right
-			 0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 1.0f, // Top-right
-			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  1.0f, 1.0f, // Top-left
+			-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f, // Bottom-left
+			 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f, // Bottom-right
+			 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f, // Top-right
+			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f, // Top-left
 
 			//Top Face
-			-0.5f, 0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 1.0f, // Bottom-left
-			 0.5f, 0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 1.0f, // Bottom-right
-			 0.5f, 0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 0.0f, // Top-right
-			-0.5f, 0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 0.0f, // Top-left
+			-0.5f, 0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f, // Bottom-left
+			 0.5f, 0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f, // Bottom-right
+			 0.5f, 0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f, // Top-right
+			-0.5f, 0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f, // Top-left
 
 			//Bottom Face
-			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
-			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
-			 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // Top-right
-			-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top-left
+			-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f, // Bottom-left
+			 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f, // Bottom-right
+			 0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f, // Top-right
+			-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f, // Top-left
 
 			//Right Face
-			0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
-			0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
-			0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // Top-right
-			0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top-left
+			0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f, // Bottom-left
+			0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f, // Bottom-right
+			0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f, // Top-right
+			0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f, // Top-left
 
 			//Left Face
-			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 0.0f, // Bottom-left
-			-0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, // Bottom-right
-			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 1.0f,  // Top-right
-			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  1.0f, 1.0f // Top-left
+			-0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 0.0f, // Bottom-left
+			-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 0.0f, // Bottom-right
+			-0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,  // Top-right
+			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,  1.0f, 1.0f // Top-left
 		};
 
 		unsigned int indices[] = 
