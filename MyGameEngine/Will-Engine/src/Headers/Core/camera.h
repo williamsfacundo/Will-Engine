@@ -14,7 +14,7 @@ namespace WillEngine
 	private:
 		mat4 _viewMatrix;
 
-		unsigned int _viewMatrixLocation;
+		int _viewMatrixLocation;
 
 	public:
 		Camera(Shader* shader);

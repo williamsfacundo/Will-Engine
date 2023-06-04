@@ -1,16 +1,44 @@
 #include "Core/renderer.h"
 
+#include <iostream>
+
 #include <glew.h>
 #include <glfw3.h>
+
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
 
 #include "Shaders/shader.h"
 #include "Objects/object.h"
 
+using namespace std;
+
 namespace WillEngine
 {
-	Renderer::Renderer()
+	void Renderer::updateProjectionMatrixUniformData()
 	{
+		glUniformMatrix4fv(_projectionMatrixLocation, 1, GL_FALSE, value_ptr(_projectionMatrix));
+	}
 
+	Renderer::Renderer(Shader* shader)
+	{
+		_projectionMatrix = perspective(radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+
+		_projectionMatrixLocation = shader->getUniformLocation("projectionMatrix");
+
+		if (_projectionMatrixLocation == -1)
+		{
+			cout << "Could not find the projection matrix uniform location!\n" << endl;
+		}
+		else
+		{
+			shader->useShaderProgram();
+
+			updateProjectionMatrixUniformData();
+
+			glUseProgram(0);
+		}
 	}
 
 	Renderer::~Renderer()
@@ -31,11 +59,11 @@ namespace WillEngine
 
 		object->getTransform()->updateModelMatrix();		
 
+		//camera->updateViewMatrixUniformData();		
+
 		object->getTexture()->selectTexture();
 
 		object->selectObject();
-
-		camera->updateViewMatrixUniformData();
 
 		glDrawElements(GL_TRIANGLES, object->getAmountOfIndexes(), GL_UNSIGNED_INT, 0);
 

@@ -20,7 +20,7 @@ namespace WillEngine
 
 		void useShaderProgram();
 
-		unsigned int getUniformLocation(const char* uniformName);
+		int getUniformLocation(const char* uniformName);
 	};
 }
 

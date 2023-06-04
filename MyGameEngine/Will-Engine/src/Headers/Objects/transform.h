@@ -26,7 +26,7 @@ namespace WillEngine
 		vec3 _rotationVector;
 		vec3 _scaleVector;
 
-		unsigned int _transformLocation;
+		int _transformLocation;
 
 		void updateModelMatrixUniformData();
 

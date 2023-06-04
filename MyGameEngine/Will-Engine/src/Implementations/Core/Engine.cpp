@@ -111,7 +111,7 @@ namespace WillEngine
 
 	void Engine::setRenderer()
 	{
-		_renderer = new Renderer();
+		_renderer = new Renderer(_shader);
 	}
 
 	void Engine::setInput()

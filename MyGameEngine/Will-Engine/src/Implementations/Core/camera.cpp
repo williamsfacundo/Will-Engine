@@ -21,13 +21,23 @@ namespace WillEngine
 
 	Camera::Camera(Shader* shader)
 	{
-		_viewMatrix = translate(_viewMatrix, vec3(0.0f, 0.0f, 0.0f));
+		_viewMatrix = mat4(1.0f);
+		
+		_viewMatrix = translate(_viewMatrix, vec3(0.0f, 0.0f, -3.0f));
 
 		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
 
 		if (_viewMatrixLocation == -1)
 		{
 			cout << "Could not find the view matrix uniform location!\n" << endl;
+		}
+		else
+		{
+			shader->useShaderProgram();
+
+			updateViewMatrixUniformData();
+
+			glUseProgram(0);
 		}
 	}
 

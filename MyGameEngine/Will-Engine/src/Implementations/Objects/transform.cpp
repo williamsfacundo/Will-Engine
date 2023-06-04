@@ -29,7 +29,7 @@ namespace WillEngine
 		if(_transformLocation == -1)
 		{
 			cout << "Could not find the model matrix uniform location!\n" << endl;
-		}
+		}	
 	}
 
 	Transform::~Transform()
@@ -59,7 +59,7 @@ namespace WillEngine
 		
 		_scaleVector = vec3(1.0f, 1.0f, 1.0f);
 
-		_modelMatrix = mat4(1.0f);	
+		_modelMatrix = mat4(1.0f);
 	}
 
 	void Transform::updateModelMatrix()
@@ -76,7 +76,7 @@ namespace WillEngine
 
 		_rotationMatrix = _xRotationMatrix * _yRotationMatrix * _zRotationMatrix;
 
-		_modelMatrix = _translationMatrix * _rotationMatrix * _scalingMatrix;
+		_modelMatrix = _translationMatrix * _rotationMatrix * _scalingMatrix;		
 
 		updateModelMatrixUniformData();
 	}	

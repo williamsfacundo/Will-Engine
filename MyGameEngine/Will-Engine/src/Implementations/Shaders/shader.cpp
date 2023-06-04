@@ -51,7 +51,7 @@ namespace WillEngine
 		glUseProgram(_shaderId);
 	}
 
-	unsigned int Shader::getUniformLocation(const char* uniformName)
+	int Shader::getUniformLocation(const char* uniformName)
 	{
 		return glGetUniformLocation(_shaderId, uniformName);
 	}
