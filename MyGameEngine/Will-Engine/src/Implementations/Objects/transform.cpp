@@ -29,7 +29,7 @@ namespace WillEngine
 		if(_transformLocation == -1)
 		{
 			cout << "Could not find the model matrix uniform location!\n" << endl;
-		}		
+		}
 	}
 
 	Transform::~Transform()

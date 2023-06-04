@@ -3,6 +3,7 @@
 
 #include "Shaders/shader.h"
 #include "Objects/object.h"
+#include "camera.h"
 
 namespace WillEngine
 {
@@ -16,7 +17,7 @@ namespace WillEngine
 
 		void renderingCommands();
 
-		static void drawObject(Object* object);
+		static void drawObject(Object* object, Camera* camera);
 	};
 }
 

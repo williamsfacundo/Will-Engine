@@ -25,7 +25,7 @@ namespace WillEngine
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
-	void Renderer::drawObject(Object* object)
+	void Renderer::drawObject(Object* object, Camera* camera)
 	{
 		object->getShader()->useShaderProgram();
 
@@ -33,7 +33,9 @@ namespace WillEngine
 
 		object->getTexture()->selectTexture();
 
-		object->selectObject();	
+		object->selectObject();
+
+		camera->updateViewMatrixUniformData();
 
 		glDrawElements(GL_TRIANGLES, object->getAmountOfIndexes(), GL_UNSIGNED_INT, 0);
 

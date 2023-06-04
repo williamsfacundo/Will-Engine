@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Implementations\Core\callback_functions.cpp" />
+    <ClCompile Include="src\Implementations\Core\camera.cpp" />
     <ClCompile Include="src\Implementations\Core\engine.cpp" />
     <ClCompile Include="src\Implementations\Core\input.cpp" />
     <ClCompile Include="src\Implementations\Core\renderer.cpp" />
@@ -167,6 +168,7 @@
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
     <ClInclude Include="src\Headers\Core\callback_functions.h" />
+    <ClInclude Include="src\Headers\Core\camera.h" />
     <ClInclude Include="src\Headers\Core\engine.h" />
     <ClInclude Include="src\Headers\Core\input.h" />
     <ClInclude Include="src\Headers\Core\renderer.h" />

@@ -124,6 +124,11 @@ namespace WillEngine
 		_texture = TextureGenerator::generateTexture("res/Textures/image.png");
 	}
 
+	void Engine::setCamera()
+	{
+		_camera = new Camera(_shader);
+	}
+
 	void Engine::engineLoop()
 	{
 		while (!glfwWindowShouldClose(_window->getGLFWwindow()))
@@ -137,7 +142,7 @@ namespace WillEngine
 			//Rendering
 			_renderer->renderingCommands();
 			
-			_renderer->drawObject(_object);
+			_renderer->drawObject(_object, _camera);
 
 			//GLFW commands
 			glfwSwapBuffers(_window->getGLFWwindow());
@@ -166,6 +171,8 @@ namespace WillEngine
 		if (_input != nullptr) { delete _input; }
 
 		if (_texture != nullptr) { delete _texture; }
+
+		if (_camera != nullptr) { delete _camera; }
 	}
 
 	void Engine::closeGLFW()
@@ -190,6 +197,8 @@ namespace WillEngine
 
 		_texture = nullptr;
 
+		_camera = nullptr;
+
 		_isGLFWInited = false;
 	}
 
@@ -211,6 +220,8 @@ namespace WillEngine
 			setRenderer();
 
 			setInput();
+
+			setCamera();
 
 			engineLoop();
 		}
