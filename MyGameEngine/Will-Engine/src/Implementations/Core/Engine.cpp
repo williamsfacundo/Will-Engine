@@ -37,7 +37,9 @@ namespace WillEngine
 			return INITIALIZATION_FAILED;
 		}
 
-		gLFWCallbackFunstionsRegister();		
+		gLFWCallbackFunstionsRegister();
+
+		enableOpenglFuntionalities();
 
 		return SUCCESSFUL_INITIALIZATION;
 	}
@@ -93,6 +95,11 @@ namespace WillEngine
 	{
 		glfwSetFramebufferSizeCallback(_window->getGLFWwindow(), framebuffer_size_callback);
 	}	
+
+	void Engine::enableOpenglFuntionalities()
+	{
+		glEnable(GL_DEPTH_TEST);
+	}
 
 	void Engine::setShaders()
 	{

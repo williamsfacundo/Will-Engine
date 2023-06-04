@@ -47,6 +47,8 @@ namespace WillEngine
 
 		void gLFWCallbackFunstionsRegister();
 
+		void enableOpenglFuntionalities();
+
 		void setShaders();
 
 		void setObjects();
