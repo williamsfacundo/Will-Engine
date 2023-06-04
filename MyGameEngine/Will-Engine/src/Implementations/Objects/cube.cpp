@@ -8,65 +8,71 @@ namespace WillEngine
 	void Cube::setData()
 	{
 #pragma region INITIALIZATION
-		//First 3 position, other 3 are colors, last 2 text coords
+		//        POSITION             COLOR       TEXT COORDS
 		float vertices[] =
 		{
-			0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // top right
-			0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // bottom right
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // bottom left
-			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f // top left
+			//Front face
+			-0.5f, -0.5f, 0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
+			 0.5f, -0.5f, 0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+			 0.5f,  0.5f, 0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // Top-right
+			-0.5f,  0.5f, 0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top-left
+
+			//Back Face
+			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 0.0f, // Bottom-left
+			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, // Bottom-right
+			 0.5f,  0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 1.0f, // Top-right
+			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  1.0f, 1.0f, // Top-left
+
+			//Top Face
+			-0.5f, 0.5f,  0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 1.0f, // Bottom-left
+			 0.5f, 0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 1.0f, // Bottom-right
+			 0.5f, 0.5f, -0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 0.0f, // Top-right
+			-0.5f, 0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 0.0f, // Top-left
+
+			//Bottom Face
+			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
+			 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+			 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // Top-right
+			-0.5f, -0.5f,  0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top-left
+
+			//Right Face
+			0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  0.0f, 0.0f, // Bottom-left
+			0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f, // Bottom-right
+			0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  1.0f, 1.0f, // Top-right
+			0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  0.0f, 1.0f, // Top-left
+
+			//Left Face
+			-0.5f, -0.5f, -0.5f,  1.0f, 0.0f, 0.0f,  1.0f, 0.0f, // Bottom-left
+			-0.5f, -0.5f,  0.5f,  0.0f, 1.0f, 0.0f,  0.0f, 0.0f, // Bottom-right
+			-0.5f,  0.5f,  0.5f,  0.0f, 0.0f, 1.0f,  0.0f, 1.0f,  // Top-right
+			-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 0.0f,  1.0f, 1.0f // Top-left
 		};
 
-		//First 3 position, last 2 text coords
-		float vertices2[] = 
+		unsigned int indices[] = 
 		{
-			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-			 0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-			-0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+			// Front face
+			0, 1, 2,
+			2, 3, 0,
 
-			-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f, 1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f, 1.0f, 1.0f,
-			-0.5f,  0.5f,  0.5f, 0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
+			// Back face
+			4, 5, 6,
+			6, 7, 4,
 
-			-0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-			-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-			-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+			// Top face
+			8, 9, 10,
+			10, 11, 8,
 
-			 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-			 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
+			// Bottom face
+			12, 13, 14,
+			14, 15, 12,
 
-			-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-			 0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
-			 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
-			 0.5f, -0.5f,  0.5f, 1.0f, 0.0f,
-			-0.5f, -0.5f,  0.5f, 0.0f, 0.0f,
-			-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+			// Right face
+			16, 17, 18,
+			18, 19, 16,
 
-			-0.5f,  0.5f, -0.5f, 0.0f, 1.0f,
-			 0.5f,  0.5f, -0.5f, 1.0f, 1.0f,
-			 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-			 0.5f,  0.5f,  0.5f, 1.0f, 0.0f,
-			-0.5f,  0.5f,  0.5f, 0.0f, 0.0f,
-			-0.5f,  0.5f, -0.5f, 0.0f, 1.0f
-		};
-
-		unsigned int indices[] =
-		{
-			0, 1, 3,   // first triangle
-			1, 2, 3    // second triangle
+			// Left face
+			20, 21, 22,
+			22, 23, 20
 		};
 
 		unsigned int VBO;
@@ -128,6 +134,6 @@ namespace WillEngine
 
 	int Cube::getAmountOfIndexes()
 	{
-		return 6;
+		return 36;
 	}
 }
