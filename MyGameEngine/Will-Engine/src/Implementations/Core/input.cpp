@@ -50,4 +50,9 @@ namespace WillEngine
 			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * camera->getCameraSpeed() * DeltaTime::getDeltaTime() ));
 		}
 	}
+
+	void Input::mousePosition(Window* window, double& xPos, double& yPos)
+	{
+		glfwGetCursorPos(window->getGLFWwindow(), &xPos, &yPos);
+	}
 }

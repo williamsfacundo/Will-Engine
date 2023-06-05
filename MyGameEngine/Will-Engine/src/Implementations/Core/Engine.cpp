@@ -40,6 +40,8 @@ namespace WillEngine
 
 		gLFWCallbackFunstionsRegister();
 
+		gLFWFunctionsSettings();
+
 		enableOpenglFuntionalities();
 
 		return SUCCESSFUL_INITIALIZATION;
@@ -94,8 +96,13 @@ namespace WillEngine
 
 	void Engine::gLFWCallbackFunstionsRegister() 
 	{
-		glfwSetFramebufferSizeCallback(_window->getGLFWwindow(), framebuffer_size_callback);
+		glfwSetFramebufferSizeCallback(_window->getGLFWwindow(), framebuffer_size_callback);				
 	}	
+
+	void Engine::gLFWFunctionsSettings()
+	{
+		glfwSetInputMode(_window->getGLFWwindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
 
 	void Engine::enableOpenglFuntionalities()
 	{

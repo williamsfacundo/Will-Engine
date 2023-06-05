@@ -14,6 +14,8 @@ namespace WillEngine
 
 		void processInput(Window* window);
 		void processInput(Window* window, Camera* camera);
+
+		void mousePosition(Window* window, double& xPos, double& yPos);
 	};
 }
 
