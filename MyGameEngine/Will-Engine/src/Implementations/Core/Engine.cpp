@@ -141,7 +141,7 @@ namespace WillEngine
 
 	void Engine::setCamera()
 	{
-		_camera = new Camera(_shader);
+		_camera = new Camera(_shader, _window);
 	}
 
 	void Engine::engineLoop()
@@ -154,6 +154,8 @@ namespace WillEngine
 
 			//Update
 			DeltaTime::updateDeltaTime();
+
+			_camera->updateCameraMovement();
 
 			//Rendering
 			_renderer->renderingCommands();

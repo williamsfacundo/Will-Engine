@@ -9,6 +9,7 @@
 #include <gtc/type_ptr.hpp>
 
 #include "Shaders/shader.h"
+#include "Core/input.h"
 
 using namespace std;
 
@@ -19,8 +20,10 @@ namespace WillEngine
 		glUniformMatrix4fv(_viewMatrixLocation, 1, GL_FALSE, value_ptr(_viewMatrix));
 	}
 
-	Camera::Camera(Shader* shader)
+	Camera::Camera(Shader* shader, Window* window)
 	{
+		_window = window;
+
 		_position = vec3(0.0f, 0.0f, 0.0f);
 
 		_front = vec3(0.0f, 0.0f, -1.0f);
@@ -32,6 +35,20 @@ namespace WillEngine
 		_viewMatrix = mat4();
 
 		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
+
+		_firstMouse = true;
+
+		_lastMouseXPos = 0.0f;
+
+		_lastMouseYPos = 0.0f;
+		
+		_mouseXPos = 0.0f;
+		
+		_mouseYPos = 0.0f;
+
+		_yaw = 0.0f;
+
+		_pitch = 0.0f;
 
 		if (_viewMatrixLocation == -1)
 		{
@@ -69,5 +86,52 @@ namespace WillEngine
 		_viewMatrix = lookAt(_position, _position + _front, _up);
 
 		updateViewMatrixUniformData();
+	}
+
+	void Camera::updateCameraMovement()
+	{
+		Input::mousePosition(_window, _mouseXPos, _mouseYPos);
+
+		if(_firstMouse)
+		{
+			_lastMouseXPos = _mouseXPos;
+			_lastMouseYPos = _mouseYPos;			
+
+			_firstMouse = false;
+		}
+
+		float xoffset = _mouseXPos - _lastMouseXPos;
+		float yoffset = _lastMouseYPos - _mouseYPos;
+		
+		_lastMouseXPos = _mouseXPos;
+		_lastMouseYPos = _mouseYPos;
+
+		float sensitivity = 0.1f;
+
+		xoffset *= sensitivity;
+		yoffset *= sensitivity;
+
+		_yaw += xoffset;
+		_pitch += yoffset;
+
+		if (_pitch > 89.0f)
+		{
+			_pitch = 89.0f;
+		}
+
+		if (_pitch < -89.0f)
+		{
+			_pitch = -89.0f;
+		}
+
+		vec3 direction;
+
+		direction.x = cos(radians(_yaw)) * cos(radians(_pitch));
+		
+		direction.y = sin(radians(_pitch));
+		
+		direction.z = sin(radians(_yaw)) * cos(radians(_pitch));
+		
+		_front = normalize(direction);
 	}
 }
