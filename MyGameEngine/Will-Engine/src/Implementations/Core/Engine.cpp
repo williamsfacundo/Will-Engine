@@ -13,6 +13,7 @@
 #include "Core/callback_functions.h"
 #include "Textures/texture.h"
 #include "Textures/textureGenerator.h"
+#include "Core/delta_time.h"
 
 using namespace std;
 
@@ -145,7 +146,7 @@ namespace WillEngine
 			_input->processInput(_window, _camera);
 
 			//Update
-			
+			DeltaTime::updateDeltaTime();
 
 			//Rendering
 			_renderer->renderingCommands();

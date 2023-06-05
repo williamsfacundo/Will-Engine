@@ -4,6 +4,8 @@
 #include <glfw3.h>
 #include <glm.hpp>
 
+#include "Core/delta_time.h"
+
 using namespace glm;
 
 namespace WillEngine
@@ -30,22 +32,22 @@ namespace WillEngine
 	{
 		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_W) == GLFW_PRESS)
 		{
-			camera->addCameraPosition(camera->getCameraSpeed() * camera->getFront());
+			camera->addCameraPosition(camera->getCameraSpeed() * camera->getFront() * DeltaTime::getDeltaTime());
 		}
 
 		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_S) == GLFW_PRESS)
 		{
-			camera->addCameraPosition(-camera->getCameraSpeed() * camera->getFront());
+			camera->addCameraPosition(-camera->getCameraSpeed() * camera->getFront() * DeltaTime::getDeltaTime());
 		}
 
 		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_A) == GLFW_PRESS)
 		{
-			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * -camera->getCameraSpeed()));
+			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * -camera->getCameraSpeed() * DeltaTime::getDeltaTime()));
 		}
 
 		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_D) == GLFW_PRESS)
 		{
-			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * camera->getCameraSpeed()));
+			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * camera->getCameraSpeed() * DeltaTime::getDeltaTime() ));
 		}
 	}
 }

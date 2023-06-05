@@ -12,7 +12,7 @@ namespace WillEngine
 	class Camera
 	{
 	private:
-		const float _cameraSpeed = 0.005f;
+		const float _cameraSpeed = 2.0f;
 		
 		vec3 _position;
 
