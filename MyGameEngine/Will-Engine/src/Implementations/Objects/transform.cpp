@@ -53,7 +53,7 @@ namespace WillEngine
 
 		_modelMatrix = mat4();
 
-		_positionVector = vec3(0.0f, 0.0f, 0.0f);
+		_positionVector = vec3(0.0f, 0.0f, -5.0f);
 
 		_rotationVector = vec3(0.0f, 0.0f, 0.0f);
 		

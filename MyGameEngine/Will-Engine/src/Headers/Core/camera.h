@@ -12,6 +12,8 @@ namespace WillEngine
 	class Camera
 	{
 	private:
+		const float _cameraSpeed = 0.005f;
+		
 		vec3 _position;
 
 		vec3 _front;
@@ -22,11 +24,20 @@ namespace WillEngine
 
 		int _viewMatrixLocation;
 
+		void updateViewMatrixUniformData();
+
 	public:
 		Camera(Shader* shader);
 		~Camera();
 
-		void updateViewMatrixUniformData();
+		void addCameraPosition(vec3 value);
+
+		vec3 getFront();
+		vec3 getUp();
+
+		float getCameraSpeed();
+
+		void updateViewMatrix();
 	};
 }
 

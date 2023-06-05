@@ -2,18 +2,18 @@
 #define INPUT_H
 
 #include "Core/window.h"
+#include "Core/camera.h"
 
 namespace WillEngine
 {
 	class Input
 	{
-	private:
-
 	public:
 		Input();
 		~Input();
 
 		void processInput(Window* window);
+		void processInput(Window* window, Camera* camera);
 	};
 }
 

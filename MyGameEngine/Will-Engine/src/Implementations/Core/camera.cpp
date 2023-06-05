@@ -27,28 +27,47 @@ namespace WillEngine
 
 		_up = vec3(0.0f, 1.0f, 0.0f);
 
-		_right = vec3(1.0f, 0.0f, 0.0f);	
-		
-		_viewMatrix = lookAt(_position, _position + _front, _up);
+		_right = vec3(1.0f, 0.0f, 0.0f);
+
+		_viewMatrix = mat4();
 
 		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
 
 		if (_viewMatrixLocation == -1)
 		{
 			cout << "Could not find the view matrix uniform location!\n" << endl;
-		}
-		else
-		{
-			shader->useShaderProgram();
-
-			updateViewMatrixUniformData();
-
-			glUseProgram(0);
-		}
+		}		
 	}
 
 	Camera::~Camera()
 	{
 
+	}
+
+	void Camera::addCameraPosition(vec3 value)
+	{
+		_position += value;
+	}
+
+	vec3 Camera::getFront()
+	{
+		return _front;
+	}
+
+	vec3 Camera::getUp()
+	{
+		return _up;
+	}
+
+	float Camera::getCameraSpeed() 
+	{
+		return _cameraSpeed;
+	}
+
+	void Camera::updateViewMatrix()
+	{
+		_viewMatrix = lookAt(_position, _position + _front, _up);
+
+		updateViewMatrixUniformData();
 	}
 }

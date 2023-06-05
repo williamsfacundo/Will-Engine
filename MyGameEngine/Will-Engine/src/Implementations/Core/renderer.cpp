@@ -59,7 +59,7 @@ namespace WillEngine
 
 		object->getTransform()->updateModelMatrix();		
 
-		//camera->updateViewMatrixUniformData();		
+		camera->updateViewMatrix();
 
 		object->getTexture()->selectTexture();
 
