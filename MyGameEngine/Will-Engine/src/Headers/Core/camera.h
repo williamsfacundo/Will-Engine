@@ -12,6 +12,12 @@ namespace WillEngine
 	class Camera
 	{
 	private:
+		vec3 _position;
+
+		vec3 _front;
+		vec3 _up;
+		vec3 _right;
+
 		mat4 _viewMatrix;
 
 		int _viewMatrixLocation;

@@ -21,9 +21,15 @@ namespace WillEngine
 
 	Camera::Camera(Shader* shader)
 	{
-		_viewMatrix = mat4(1.0f);
+		_position = vec3(0.0f, 0.0f, 0.0f);
+
+		_front = vec3(0.0f, 0.0f, -1.0f);
+
+		_up = vec3(0.0f, 1.0f, 0.0f);
+
+		_right = vec3(1.0f, 0.0f, 0.0f);	
 		
-		_viewMatrix = translate(_viewMatrix, vec3(0.0f, 0.0f, -3.0f));
+		_viewMatrix = lookAt(_position, _position + _front, _up);
 
 		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
 
