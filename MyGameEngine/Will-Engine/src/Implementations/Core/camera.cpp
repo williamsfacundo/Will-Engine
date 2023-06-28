@@ -26,13 +26,13 @@ namespace WillEngine
 	{
 		_window = window;
 
-		_position = vec3(0.0f, 0.0f, 0.0f);
+		_position = WorldOrigin;
 
-		_front = vec3(0.0f, 0.0f, -1.0f);
+		_right = WorldRight;
 
-		_up = vec3(0.0f, 1.0f, 0.0f);
+		_up = WorldUp;
 
-		_right = vec3(1.0f, 0.0f, 0.0f);
+		_front = WorldFront;
 
 		_viewMatrix = mat4();
 

@@ -21,13 +21,21 @@ namespace WillEngine
 
 		const float _cameraMouseSensitivity = 0.1f;
 		
+		const vec3 WorldOrigin = vec3(0.0f, 0.0f, 0.0f);
+
+		const vec3 WorldRight = vec3(1.0f, 0.0f, 0.0f);
+
+		const vec3 WorldUp = vec3(0.0f, 0.1f, 0.0f);
+
+		const vec3 WorldFront = vec3(0.0f, 0.0f, -1.0f);
+
 		Window* _window;
 
 		vec3 _position;
 
-		vec3 _front;
-		vec3 _up;
 		vec3 _right;
+		vec3 _up;
+		vec3 _front;
 
 		mat4 _viewMatrix;
 
