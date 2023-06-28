@@ -2,7 +2,8 @@
 
 using namespace WillEngine;
 
-int main()
+//En la clase que muestran cave y fede se menciona algo importante que no hay que hacer a la hora de implementar modelos
+int main() 
 {
     Game* engine = new Game();
 

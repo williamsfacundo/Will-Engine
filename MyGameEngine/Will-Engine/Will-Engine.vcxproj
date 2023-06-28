@@ -175,6 +175,7 @@
     <ClInclude Include="src\Headers\Core\input.h" />
     <ClInclude Include="src\Headers\Core\renderer.h" />
     <ClInclude Include="src\Headers\Core\window.h" />
+    <ClInclude Include="src\Headers\Enums\camera_movement_enum.h" />
     <ClInclude Include="src\Headers\Objects\cube.h" />
     <ClInclude Include="src\Headers\Objects\object.h" />
     <ClInclude Include="src\Headers\Objects\transform.h" />

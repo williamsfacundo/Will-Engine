@@ -116,6 +116,9 @@
     <ClInclude Include="src\Headers\Core\delta_time.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\Headers\Enums\camera_movement_enum.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="dependences\GLFW\lib\glfw3.lib" />
