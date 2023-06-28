@@ -8,6 +8,7 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 
+#include "Enums/camera_movement_enum.h"
 #include "Shaders/shader.h"
 #include "Core/input.h"
 
@@ -33,6 +34,8 @@ namespace WillEngine
 		_right = vec3(1.0f, 0.0f, 0.0f);
 
 		_viewMatrix = mat4();
+
+		_keyboardInputEnum = CameraMovementEnum::NONE;
 
 		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
 
@@ -90,19 +93,24 @@ namespace WillEngine
 
 	void Camera::updateCameraMovement()
 	{
+		updateCameraMouseMovement();
+	}
+
+	void Camera::updateCameraMouseMovement()
+	{
 		Input::mousePosition(_window, _mouseXPos, _mouseYPos);
 
-		if(_firstMouse)
+		if (_firstMouse)
 		{
 			_lastMouseXPos = _mouseXPos;
-			_lastMouseYPos = _mouseYPos;			
+			_lastMouseYPos = _mouseYPos;
 
 			_firstMouse = false;
 		}
 
 		float xoffset = _mouseXPos - _lastMouseXPos;
 		float yoffset = _lastMouseYPos - _mouseYPos;
-		
+
 		_lastMouseXPos = _mouseXPos;
 		_lastMouseYPos = _mouseYPos;
 
@@ -127,11 +135,11 @@ namespace WillEngine
 		vec3 direction;
 
 		direction.x = cos(radians(_yaw)) * cos(radians(_pitch));
-		
+
 		direction.y = sin(radians(_pitch));
-		
+
 		direction.z = sin(radians(_yaw)) * cos(radians(_pitch));
-		
+
 		_front = normalize(direction);
 	}
 }
