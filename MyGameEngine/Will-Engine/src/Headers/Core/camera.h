@@ -17,7 +17,9 @@ namespace WillEngine
 	class Camera
 	{
 	private:
-		const float _cameraSpeed = 2.0f;
+		const float _cameraMoveSpeed = 2.0f;
+
+		const float _cameraMouseSensitivity = 0.1f;
 		
 		Window* _window;
 

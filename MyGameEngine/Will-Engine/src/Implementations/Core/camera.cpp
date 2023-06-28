@@ -84,7 +84,7 @@ namespace WillEngine
 
 	float Camera::getCameraSpeed() 
 	{
-		return _cameraSpeed;
+		return _cameraMoveSpeed;
 	}
 
 	void Camera::updateViewMatrix()
@@ -185,12 +185,10 @@ namespace WillEngine
 		float yoffset = _lastMouseYPos - _mouseYPos;
 
 		_lastMouseXPos = _mouseXPos;
-		_lastMouseYPos = _mouseYPos;
+		_lastMouseYPos = _mouseYPos;		
 
-		float sensitivity = 0.1f;
-
-		xoffset *= sensitivity;
-		yoffset *= sensitivity;
+		xoffset *= _cameraMouseSensitivity;
+		yoffset *= _cameraMouseSensitivity;
 
 		_yaw += xoffset;
 		_pitch += yoffset;
