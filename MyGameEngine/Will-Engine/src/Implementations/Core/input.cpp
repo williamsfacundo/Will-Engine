@@ -26,29 +26,11 @@ namespace WillEngine
 		{
 			glfwSetWindowShouldClose(window->getGLFWwindow(), true);
 		}
-	}
+	}	
 
-	void Input::processInput(Window* window, Camera* camera)
+	bool Input::isKeyPressed(Window* window, int key)
 	{
-		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_W) == GLFW_PRESS)
-		{
-			camera->addCameraPosition(camera->getCameraSpeed() * camera->getFront() * DeltaTime::getDeltaTime());
-		}
-
-		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_S) == GLFW_PRESS)
-		{
-			camera->addCameraPosition(-camera->getCameraSpeed() * camera->getFront() * DeltaTime::getDeltaTime());
-		}
-
-		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_A) == GLFW_PRESS)
-		{
-			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * -camera->getCameraSpeed() * DeltaTime::getDeltaTime()));
-		}
-
-		if (glfwGetKey(window->getGLFWwindow(), GLFW_KEY_D) == GLFW_PRESS)
-		{
-			camera->addCameraPosition(normalize(cross(camera->getFront(), camera->getUp()) * camera->getCameraSpeed() * DeltaTime::getDeltaTime() ));
-		}
+		return (glfwGetKey(window->getGLFWwindow(), key) == GLFW_PRESS);
 	}
 
 	void Input::mousePosition(Window* window, double& xPos, double& yPos)

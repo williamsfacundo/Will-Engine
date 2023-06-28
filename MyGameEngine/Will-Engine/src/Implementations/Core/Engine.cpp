@@ -150,7 +150,7 @@ namespace WillEngine
 		{
 			//Input
 			_input->processInput(_window);
-			_input->processInput(_window, _camera);
+			_camera->inputCameraMovement();
 
 			//Update
 			DeltaTime::updateDeltaTime();

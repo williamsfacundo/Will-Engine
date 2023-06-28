@@ -9,6 +9,7 @@
 #include <gtc/type_ptr.hpp>
 
 #include "Enums/camera_movement_enum.h"
+#include "Core/delta_time.h"
 #include "Shaders/shader.h"
 #include "Core/input.h"
 
@@ -35,7 +36,9 @@ namespace WillEngine
 
 		_viewMatrix = mat4();
 
-		_keyboardInputEnum = CameraMovementEnum::NONE;
+		_horizontalKeyboardInputEnum = CameraMovementEnum::NONE;
+
+		_verticalKeyboardInputEnum = CameraMovementEnum::NONE;
 
 		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
 
@@ -91,9 +94,79 @@ namespace WillEngine
 		updateViewMatrixUniformData();
 	}
 
+	void Camera::inputCameraMovement()
+	{
+		if (Input::isKeyPressed(_window, GLFW_KEY_W))
+		{
+			_horizontalKeyboardInputEnum = CameraMovementEnum::FORWARD;
+		}
+		else if (Input::isKeyPressed(_window, GLFW_KEY_S))
+		{
+			_horizontalKeyboardInputEnum = CameraMovementEnum::BACKWARD;
+		}
+		else
+		{
+			_horizontalKeyboardInputEnum = CameraMovementEnum::NONE;
+		}		
+
+		if (Input::isKeyPressed(_window, GLFW_KEY_A))
+		{
+			_verticalKeyboardInputEnum = CameraMovementEnum::LEFT;
+		}
+		else if (Input::isKeyPressed(_window, GLFW_KEY_D))
+		{
+			_verticalKeyboardInputEnum = CameraMovementEnum::RIGHT;
+		}
+		else
+		{
+			_verticalKeyboardInputEnum = CameraMovementEnum::NONE;
+		}
+	}
+
 	void Camera::updateCameraMovement()
 	{
+		updateCameraKeyboardMovement();
+
 		updateCameraMouseMovement();
+	}
+
+	void Camera::updateCameraKeyboardMovement()
+	{
+		switch (_horizontalKeyboardInputEnum)
+		{
+		case CameraMovementEnum::FORWARD:
+
+			addCameraPosition(getCameraSpeed() * getFront() * DeltaTime::getDeltaTime());
+			
+			break;
+		case CameraMovementEnum::BACKWARD:
+			
+			addCameraPosition(-getCameraSpeed() * getFront() * DeltaTime::getDeltaTime());
+					
+			break;
+		case CameraMovementEnum::NONE:
+			break;
+		default:
+			break;
+		}
+
+		switch (_verticalKeyboardInputEnum)
+		{
+		case CameraMovementEnum::LEFT:
+
+			addCameraPosition(normalize(cross(getFront(), getUp()) * -getCameraSpeed() * DeltaTime::getDeltaTime()));
+
+			break;
+		case CameraMovementEnum::RIGHT:			
+			
+			addCameraPosition(normalize(cross(getFront(), getUp()) * getCameraSpeed() * DeltaTime::getDeltaTime()));
+			
+			break;
+		case CameraMovementEnum::NONE:
+			break;
+		default:
+			break;
+		}
 	}
 
 	void Camera::updateCameraMouseMovement()

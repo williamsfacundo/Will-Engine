@@ -13,7 +13,8 @@ namespace WillEngine
 		~Input();
 
 		void processInput(Window* window);
-		void processInput(Window* window, Camera* camera);
+
+		static bool isKeyPressed(Window* window, int key);
 
 		static void mousePosition(Window* window, double& xPos, double& yPos);
 	};

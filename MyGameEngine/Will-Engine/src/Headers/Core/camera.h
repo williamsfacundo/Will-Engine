@@ -29,7 +29,8 @@ namespace WillEngine
 
 		mat4 _viewMatrix;
 
-		CameraMovementEnum _keyboardInputEnum;
+		CameraMovementEnum _horizontalKeyboardInputEnum;
+		CameraMovementEnum _verticalKeyboardInputEnum;
 
 		int _viewMatrixLocation;
 
@@ -58,7 +59,11 @@ namespace WillEngine
 
 		void updateViewMatrix();
 
+		void inputCameraMovement();
+
 		void updateCameraMovement();
+
+		void updateCameraKeyboardMovement();
 
 		void updateCameraMouseMovement();
 	};
