@@ -222,17 +222,19 @@ namespace WillEngine
 			if (_pitch < -89.0f)
 			{
 				_pitch = -89.0f;
-			}
+			}			
 
-			vec3 direction;
+			_front.x = cos(radians(_yaw)) * cos(radians(_pitch));
 
-			direction.x = cos(radians(_yaw)) * cos(radians(_pitch));
+			_front.y = sin(radians(_pitch));
 
-			direction.y = sin(radians(_pitch));
+			_front.z = sin(radians(_yaw)) * cos(radians(_pitch));
 
-			direction.z = sin(radians(_yaw)) * cos(radians(_pitch));
+			_front = normalize(_front);
 
-			_front = normalize(direction);
+			_right = normalize(cross(_front, WorldUp));
+
+			_up = normalize(cross(_right, _front));
 
 			if(!_shouldUpdateViewMatrix)
 			{
