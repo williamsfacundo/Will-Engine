@@ -155,7 +155,7 @@ namespace WillEngine
 			//Update
 			DeltaTime::updateDeltaTime();
 
-			_camera->updateCameraMovement();
+			_camera->updateCameraMovement();			
 
 			//Rendering
 			_renderer->renderingCommands();

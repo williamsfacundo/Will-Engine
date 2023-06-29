@@ -42,26 +42,31 @@ namespace WillEngine
 
 		_verticalKeyboardInputEnum = CameraMovementEnum::NONE;
 
-		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");
+		_viewMatrixLocation = shader->getUniformLocation("viewMatrix");		
 
-		_firstMouse = true;
+		_mouseXPos = 0.0f;
+		_mouseYPos = 0.0f;
 
 		_lastMouseXPos = 0.0f;
+		_lastMouseYPos = 0.0f;			
 
-		_lastMouseYPos = 0.0f;
-		
-		_mouseXPos = 0.0f;
-		
-		_mouseYPos = 0.0f;
+		_mouseXOffset = 0.0f;
+		_mouseYOffset = 0.0f;
 
 		_yaw = 0.0f;
 
 		_pitch = 0.0f;
 
+		_shouldUpdateViewMatrix = true;
+
+		_firstMouse = true;
+
 		if (_viewMatrixLocation == -1)
 		{
 			cout << "Could not find the view matrix uniform location!\n" << endl;
-		}		
+		}	
+
+		updateViewMatrix();
 	}
 
 	Camera::~Camera()
@@ -91,11 +96,16 @@ namespace WillEngine
 
 	void Camera::updateViewMatrix()
 	{
-		_lookDirection = _position + _front;
+		if(_shouldUpdateViewMatrix)
+		{
+			_lookDirection = _position + _front;
 
-		_viewMatrix = lookAt(_position, _position + _front, _up);
+			_viewMatrix = lookAt(_position, _position + _front, _up);		
 
-		updateViewMatrixUniformData();
+			updateViewMatrixUniformData();
+
+			_shouldUpdateViewMatrix = false;
+		}
 	}
 
 	void Camera::inputCameraMovement()
@@ -131,7 +141,7 @@ namespace WillEngine
 	{
 		updateCameraKeyboardMovement();
 
-		updateCameraMouseMovement();
+		updateCameraMouseMovement();		
 	}
 
 	void Camera::updateCameraKeyboardMovement()
@@ -171,13 +181,18 @@ namespace WillEngine
 		default:
 			break;
 		}
+
+		if (_horizontalKeyboardInputEnum != CameraMovementEnum::NONE || _verticalKeyboardInputEnum != CameraMovementEnum::NONE)
+		{
+			_shouldUpdateViewMatrix = true;
+		}
 	}
 
 	void Camera::updateCameraMouseMovement()
 	{
 		Input::mousePosition(_window, _mouseXPos, _mouseYPos);
 
-		if (_firstMouse)
+		if(_firstMouse)
 		{
 			_lastMouseXPos = _mouseXPos;
 			_lastMouseYPos = _mouseYPos;
@@ -185,36 +200,44 @@ namespace WillEngine
 			_firstMouse = false;
 		}
 
-		float xoffset = _mouseXPos - _lastMouseXPos;
-		float yoffset = _lastMouseYPos - _mouseYPos;
-
+		_mouseXOffset = static_cast<float>(_mouseXPos - _lastMouseXPos);
+		_mouseYOffset = static_cast<float>(_lastMouseYPos - _mouseYPos);
+		
 		_lastMouseXPos = _mouseXPos;
-		_lastMouseYPos = _mouseYPos;		
+		_lastMouseYPos = _mouseYPos;
 
-		xoffset *= _cameraMouseSensitivity;
-		yoffset *= _cameraMouseSensitivity;
-
-		_yaw += xoffset;
-		_pitch += yoffset;
-
-		if (_pitch > 89.0f)
+		if(_mouseXOffset != 0.0f || _mouseYOffset != 0.0f)
 		{
-			_pitch = 89.0f;
-		}
+			_mouseXOffset *= _cameraMouseSensitivity;
+			_mouseYOffset *= _cameraMouseSensitivity;
 
-		if (_pitch < -89.0f)
-		{
-			_pitch = -89.0f;
-		}
+			_yaw += _mouseXOffset;
+			_pitch += _mouseYOffset;
 
-		vec3 direction;
+			if (_pitch > 89.0f)
+			{
+				_pitch = 89.0f;
+			}
 
-		direction.x = cos(radians(_yaw)) * cos(radians(_pitch));
+			if (_pitch < -89.0f)
+			{
+				_pitch = -89.0f;
+			}
 
-		direction.y = sin(radians(_pitch));
+			vec3 direction;
 
-		direction.z = sin(radians(_yaw)) * cos(radians(_pitch));
+			direction.x = cos(radians(_yaw)) * cos(radians(_pitch));
 
-		_front = normalize(direction);
+			direction.y = sin(radians(_pitch));
+
+			direction.z = sin(radians(_yaw)) * cos(radians(_pitch));
+
+			_front = normalize(direction);
+
+			if(!_shouldUpdateViewMatrix)
+			{
+				_shouldUpdateViewMatrix = true;
+			}
+		}			
 	}
 }

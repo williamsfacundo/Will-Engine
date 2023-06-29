@@ -44,17 +44,22 @@ namespace WillEngine
 		CameraMovementEnum _horizontalKeyboardInputEnum;
 		CameraMovementEnum _verticalKeyboardInputEnum;
 
-		int _viewMatrixLocation;
+		int _viewMatrixLocation;		
 
-		bool _firstMouse;
-
-		float _lastMouseXPos;
-		float _lastMouseYPos;
 		double _mouseXPos;
 		double _mouseYPos;
 
+		double _lastMouseXPos;
+		double _lastMouseYPos;
+
+		float _mouseXOffset;
+		float _mouseYOffset;
+
 		float _yaw;
 		float _pitch;
+
+		bool _shouldUpdateViewMatrix;
+		bool _firstMouse;
 
 		void updateViewMatrixUniformData();
 
