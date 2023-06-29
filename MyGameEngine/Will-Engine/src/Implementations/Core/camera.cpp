@@ -150,12 +150,12 @@ namespace WillEngine
 		{
 		case CameraMovementEnum::FORWARD:
 
-			addCameraPosition(getCameraSpeed() * getFront() * DeltaTime::getDeltaTime());
+			addCameraPosition(getFront() * getCameraSpeed() * DeltaTime::getDeltaTime());
 			
 			break;
 		case CameraMovementEnum::BACKWARD:
 			
-			addCameraPosition(-getCameraSpeed() * getFront() * DeltaTime::getDeltaTime());
+			addCameraPosition(getFront() * -getCameraSpeed() * DeltaTime::getDeltaTime());
 					
 			break;
 		case CameraMovementEnum::NONE:
@@ -168,12 +168,12 @@ namespace WillEngine
 		{
 		case CameraMovementEnum::LEFT:
 
-			addCameraPosition(normalize(cross(getFront(), getUp()) * -getCameraSpeed() * DeltaTime::getDeltaTime()));
+			addCameraPosition(-_right * getCameraSpeed() * DeltaTime::getDeltaTime());
 
 			break;
 		case CameraMovementEnum::RIGHT:			
 			
-			addCameraPosition(normalize(cross(getFront(), getUp()) * getCameraSpeed() * DeltaTime::getDeltaTime()));
+			addCameraPosition(_right * getCameraSpeed() * DeltaTime::getDeltaTime());
 			
 			break;
 		case CameraMovementEnum::NONE:
