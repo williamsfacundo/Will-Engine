@@ -53,7 +53,7 @@ namespace WillEngine
 		_mouseXOffset = 0.0f;
 		_mouseYOffset = 0.0f;
 
-		_yaw = 0.0f;
+		_yaw = -90.0f;
 
 		_pitch = 0.0f;
 
