@@ -34,6 +34,8 @@ namespace WillEngine
 
 		_front = WorldFront;
 
+		_lookDirection = vec3();
+
 		_viewMatrix = mat4();
 
 		_horizontalKeyboardInputEnum = CameraMovementEnum::NONE;
@@ -89,6 +91,8 @@ namespace WillEngine
 
 	void Camera::updateViewMatrix()
 	{
+		_lookDirection = _position + _front;
+
 		_viewMatrix = lookAt(_position, _position + _front, _up);
 
 		updateViewMatrixUniformData();

@@ -37,6 +37,8 @@ namespace WillEngine
 		vec3 _up;
 		vec3 _front;
 
+		vec3 _lookDirection;
+
 		mat4 _viewMatrix;
 
 		CameraMovementEnum _horizontalKeyboardInputEnum;
