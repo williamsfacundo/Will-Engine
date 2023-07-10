@@ -150,7 +150,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Implementations\Core\callback_functions.cpp" />
-    <ClCompile Include="src\Implementations\Core\camera.cpp" />
+    <ClCompile Include="src\Implementations\Core\Camera\camera.cpp" />
+    <ClCompile Include="src\Implementations\Core\Camera\ControlableCamera.cpp" />
     <ClCompile Include="src\Implementations\Core\delta_time.cpp" />
     <ClCompile Include="src\Implementations\Core\engine.cpp" />
     <ClCompile Include="src\Implementations\Core\input.cpp" />
@@ -169,7 +170,8 @@
   <ItemGroup>
     <ClInclude Include="dependences\GLFW\include\glfw3.h" />
     <ClInclude Include="src\Headers\Core\callback_functions.h" />
-    <ClInclude Include="src\Headers\Core\camera.h" />
+    <ClInclude Include="src\Headers\Core\Camera\camera.h" />
+    <ClInclude Include="src\Headers\Core\Camera\ControlableCamera.h" />
     <ClInclude Include="src\Headers\Core\delta_time.h" />
     <ClInclude Include="src\Headers\Core\engine.h" />
     <ClInclude Include="src\Headers\Core\input.h" />

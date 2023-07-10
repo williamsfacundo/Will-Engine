@@ -2,7 +2,6 @@
 #define INPUT_H
 
 #include "Core/window.h"
-#include "Core/camera.h"
 
 namespace WillEngine
 {

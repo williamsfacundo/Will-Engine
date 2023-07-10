@@ -5,7 +5,7 @@
 
 #include "Shaders/shader.h"
 #include "Objects/object.h"
-#include "camera.h"
+#include "Camera/camera.h"
 
 using namespace glm;
 

@@ -10,7 +10,7 @@
 #include "Shaders/shader.h"
 #include "Objects/object.h"
 #include "Textures/texture.h"
-#include "camera.h"
+#include "Camera/camera.h"
 
 namespace WillEngine
 {
