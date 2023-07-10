@@ -57,7 +57,7 @@ namespace WillEngine
 	{
 		object->getShader()->useShaderProgram();
 
-		object->getTransform()->updateModelMatrix();		
+		object->getObjectTransform()->updateModelMatrix();		
 
 		camera->updateViewMatrix();
 

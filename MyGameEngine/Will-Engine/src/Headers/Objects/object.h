@@ -3,7 +3,7 @@
 
 #include "Shaders/shader.h"
 #include "Textures/texture.h"
-#include "transform.h"
+#include "objectTransform.h"
 
 namespace WillEngine
 {
@@ -12,7 +12,7 @@ namespace WillEngine
 	private:
 		Shader* _shader;
 		Texture* _texture;
-		Transform* _transform;
+		ObjectTransform* _objectTransform;
 
 		unsigned int _vertexArray;
 
@@ -21,7 +21,7 @@ namespace WillEngine
 
 		void setVertexArray(unsigned int vertexArray);
 
-		void setTransform(Transform* transform);
+		void setObjectTransform(ObjectTransform* objectTransform);
 	public:
 		Object();
 		~Object();
@@ -32,7 +32,7 @@ namespace WillEngine
 
 		Texture* getTexture();
 
-		Transform* getTransform();
+		ObjectTransform* getObjectTransform();
 
 		virtual int getAmountOfIndexes() = 0;
 

@@ -1,35 +1,30 @@
 #include "Objects/transform.h"
 
-#include <iostream>
-
-#include <glew.h>
-#include <glfw3.h>
 #include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
-
-#include "Shaders/shader.h"
 
 using namespace glm;
-using namespace std;
 
 namespace WillEngine
 {
-	void Transform::updateModelMatrixUniformData()
+	Transform::Transform()
 	{
-		glUniformMatrix4fv(_transformLocation, 1, GL_FALSE, value_ptr(_modelMatrix));	
+		setDefaultTransform();
 	}
 
-	Transform::Transform(Shader* shader)
+	Transform::Transform(vec3 position)
 	{
-		setDefaultTransform();		
+		setDefaultTransform();
 
-		_transformLocation = shader->getUniformLocation("modelMatrix");
+		setLocalPosition(position);
+	}
 
-		if(_transformLocation == -1)
-		{
-			cout << "Could not find the model matrix uniform location!\n" << endl;
-		}	
+	Transform::Transform(vec3 position, vec3 rotation, vec3 scale)
+	{
+		setDefaultTransform();
+
+		setLocalPosition(position);
+		setLocalRotation(rotation);
+		setLocalScale(scale);
 	}
 
 	Transform::~Transform()
@@ -37,47 +32,74 @@ namespace WillEngine
 
 	}
 
-	void Transform::setDefaultTransform()
+	void Transform::setLocalPosition(vec3 newPosition)
 	{
-		_xRotationMatrix = mat4();
-
-		_yRotationMatrix = mat4();
-
-		_zRotationMatrix = mat4();
-
-		_translationMatrix = mat4();
-
-		_rotationMatrix = mat4();
-
-		_scalingMatrix = mat4();
-
-		_modelMatrix = mat4();
-
-		_positionVector = vec3(0.0f, 0.0f, -5.0f);
-
-		_rotationVector = vec3(0.0f, 0.0f, 0.0f);
-		
-		_scaleVector = vec3(1.0f, 1.0f, 1.0f);
-
-		_modelMatrix = mat4(1.0f);
+		_localPosition = newPosition;
 	}
 
-	void Transform::updateModelMatrix()
+	void Transform::setLocalRotation(vec3 newRotation)
 	{
-		_translationMatrix = translate(mat4(1.0f), _positionVector);
+		_localRotation = newRotation;
+	}
 
-		_scalingMatrix = scale(mat4(1.0f), _scaleVector);
+	void Transform::setLocalScale(vec3 newScale)
+	{
+		_localScale = newScale;
+	}
 
-		_xRotationMatrix = rotate(mat4(1.0f), radians(_rotationVector.x), vec3(1.0f, 0.0f, 0.0f));
+	void Transform::setLocalRight(vec3 newRight)
+	{
+		_localRight = newRight;
+	}
 
-		_yRotationMatrix = rotate(mat4(1.0f), radians(_rotationVector.y), vec3(0.0f, 1.0f, 0.0f));
+	void Transform::setLocalUp(vec3 newUp)
+	{
+		_localUp = newUp;
+	}
 
-		_zRotationMatrix = rotate(mat4(1.0f), radians(_rotationVector.z), vec3(0.0f, 0.0f, 1.0f));
+	void Transform::setLocalFront(vec3 newFront)
+	{
+		_localFront = newFront;
+	}
 
-		_rotationMatrix = _xRotationMatrix * _yRotationMatrix * _zRotationMatrix;
+	void Transform::setDefaultTransform()
+	{
+		setLocalPosition(WorldOrigin);
+		setLocalRotation(DefaultRotation);
+		setLocalScale(DefaultScale);
 
-		_modelMatrix = _translationMatrix * _rotationMatrix * _scalingMatrix;		
+		setLocalRight(WorldRight);
+		setLocalUp(WorldUp);
+		setLocalFront(WorldFront);
+	}
 
-		updateModelMatrixUniformData();
-	}	
+	vec3 Transform::getLocalPosition()
+	{
+		return _localPosition;
+	}
+
+	vec3 Transform::getLocalRotation()
+	{
+		return _localRotation;
+	}
+
+	vec3 Transform::getLocalScale()
+	{
+		return _localScale;
+	}
+
+	vec3 Transform::getLocalRight()
+	{
+		return _localRight;
+	}
+
+	vec3 Transform::getLocalUp()
+	{
+		return _localUp;
+	}
+	
+	vec3 Transform::getLocalFront()
+	{
+		return _localFront;
+	}
 }
