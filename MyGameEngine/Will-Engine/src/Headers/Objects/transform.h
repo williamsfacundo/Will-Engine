@@ -12,6 +12,10 @@ namespace WillEngine
 	class Transform
 	{
 	private:
+		const vec3 WorldOrigin = vec3(0.0f, 0.0f, 0.0f);
+		const vec3 WorldRight = vec3(1.0f, 0.0f, 0.0f);
+		const vec3 WorldUp = vec3(0.0f, 0.1f, 0.0f);
+		
 		mat4 _xRotationMatrix;
 		mat4 _yRotationMatrix;
 		mat4 _zRotationMatrix;

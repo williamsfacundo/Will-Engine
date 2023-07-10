@@ -161,6 +161,7 @@
     <ClCompile Include="src\Implementations\main.cpp" />
     <ClCompile Include="src\Implementations\Objects\cube.cpp" />
     <ClCompile Include="src\Implementations\Objects\object.cpp" />
+    <ClCompile Include="src\Implementations\Objects\objectTransform.cpp" />
     <ClCompile Include="src\Implementations\Objects\transform.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shader.cpp" />
     <ClCompile Include="src\Implementations\Shaders\shaderCreator.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\Headers\Enums\camera_movement_enum.h" />
     <ClInclude Include="src\Headers\Objects\cube.h" />
     <ClInclude Include="src\Headers\Objects\object.h" />
+    <ClInclude Include="src\Headers\Objects\objectTransform.h" />
     <ClInclude Include="src\Headers\Objects\transform.h" />
     <ClInclude Include="src\Headers\Shaders\shader.h" />
     <ClInclude Include="src\Headers\Shaders\shaderCreator.h" />
