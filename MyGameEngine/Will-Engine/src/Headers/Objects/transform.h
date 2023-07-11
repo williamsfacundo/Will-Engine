@@ -35,9 +35,25 @@ namespace WillEngine
 		void setLocalRotation(vec3 newRotation);
 		void setLocalScale(vec3 newScale);
 
+		void setLocalRotationX(float value);
+		void setLocalRotationY(float value);
+		void setLocalRotationZ(float value);
+
+		void addLocalPosition(vec3 value);
+		void addLocalRotation(vec3 value);
+		void addLocalScale(vec3 value);
+
+		void addLocalXRotation(float value);
+		void addLocalYRotation(float value);
+		void addLocalZRotation(float value);
+
 		void setLocalRight(vec3 newRight);
 		void setLocalUp(vec3 newUp);
 		void setLocalFront(vec3 newFront);
+
+		void setLocalFrontX(float value);
+		void setLocalFrontY(float value);
+		void setLocalFrontZ(float value);
 
 		void setDefaultTransform();
 
@@ -48,6 +64,10 @@ namespace WillEngine
 		vec3 getLocalRight();
 		vec3 getLocalUp();
 		vec3 getLocalFront();
+
+		vec3 getWorldRight();
+		vec3 getWorldUp();
+		vec3 getWorldFront();
 	};
 }
 

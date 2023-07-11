@@ -63,10 +63,16 @@
     <ClCompile Include="src\Implementations\Core\delta_time.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Implementations\Core\Camera\ControlableCamera.cpp">
+    <ClCompile Include="src\Implementations\Objects\objectTransform.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Implementations\Objects\objectTransform.cpp">
+    <ClCompile Include="src\Implementations\Objects\Character\movement_controller.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Implementations\Objects\Character\character.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Implementations\Objects\Character\look_around_controller.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -122,13 +128,19 @@
     <ClInclude Include="src\Headers\Core\delta_time.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Headers\Enums\camera_movement_enum.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Headers\Core\Camera\ControlableCamera.h">
+    <ClInclude Include="src\Headers\Enums\movement_enum.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\Headers\Objects\objectTransform.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Headers\Objects\Character\movement_controller.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Headers\Objects\Character\character.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Headers\Objects\Character\look_around_controller.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

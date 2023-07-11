@@ -38,8 +38,10 @@ namespace WillEngine
 
 	}
 
-	void ObjectTransform::setDefaultTransform()
+	void ObjectTransform::setDefaultObjectTransform()
 	{
+		setDefaultTransform();
+
 		_xRotationMatrix = mat4();
 
 		_yRotationMatrix = mat4();

@@ -31,7 +31,7 @@ namespace WillEngine
 		ObjectTransform(Shader* shader);
 		~ObjectTransform();
 
-		void setDefaultTransform();
+		void setDefaultObjectTransform();
 
 		void updateModelMatrix();
 	};

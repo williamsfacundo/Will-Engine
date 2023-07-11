@@ -11,6 +11,7 @@
 #include "Objects/object.h"
 #include "Textures/texture.h"
 #include "Camera/camera.h"
+#include "Objects/Character/character.h"
 
 namespace WillEngine
 {
@@ -28,6 +29,7 @@ namespace WillEngine
 		Input* _input;
 		Texture* _texture;
 		Camera* _camera;
+		Character* _character;
 
 		bool _isGLFWInited;
 #pragma endregion
@@ -62,6 +64,8 @@ namespace WillEngine
 		void setTexture();
 
 		void setCamera();
+
+		void setCharacter();
 #pragma endregion
 
 #pragma region UPDATE

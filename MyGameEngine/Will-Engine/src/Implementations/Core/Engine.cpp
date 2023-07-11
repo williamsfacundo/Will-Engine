@@ -141,7 +141,12 @@ namespace WillEngine
 
 	void Engine::setCamera()
 	{
-		_camera = new Camera(_shader, _window);
+		_camera = new Camera(_shader);
+	}
+
+	void Engine::setCharacter()
+	{
+		_character = new Character(_window, _camera);
 	}
 
 	void Engine::engineLoop()
@@ -150,12 +155,15 @@ namespace WillEngine
 		{
 			//Input
 			_input->processInput(_window);
-			_camera->inputCameraMovement();
+			//_camera->inputCameraMovement();
+			_character->getMovementController()->input();
 
 			//Update
 			DeltaTime::updateDeltaTime();
 
-			_camera->updateCameraMovement();			
+			//_camera->updateCameraMovement();
+			_character->getMovementController()->update();
+			_character->getLookAroundController()->update();
 
 			//Rendering
 			_renderer->renderingCommands();
@@ -191,6 +199,8 @@ namespace WillEngine
 		if (_texture != nullptr) { delete _texture; }
 
 		if (_camera != nullptr) { delete _camera; }
+
+		if (_character != nullptr) { delete _character; }
 	}
 
 	void Engine::closeGLFW()
@@ -217,6 +227,8 @@ namespace WillEngine
 
 		_camera = nullptr;
 
+		_character = nullptr;
+
 		_isGLFWInited = false;
 	}
 
@@ -240,6 +252,8 @@ namespace WillEngine
 			setInput();
 
 			setCamera();
+
+			setCharacter();
 
 			engineLoop();
 		}

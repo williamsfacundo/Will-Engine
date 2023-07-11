@@ -47,6 +47,51 @@ namespace WillEngine
 		_localScale = newScale;
 	}
 
+	void Transform::setLocalRotationX(float value)
+	{
+		_localRotation.x = value;
+	}
+
+	void Transform::setLocalRotationY(float value)
+	{
+		_localRotation.y = value;
+	}
+	
+	void Transform::setLocalRotationZ(float value)
+	{
+		_localRotation.z = value;
+	}
+
+	void Transform::addLocalPosition(vec3 value)
+	{
+		_localPosition += value;
+	}
+
+	void Transform::addLocalRotation(vec3 value)
+	{
+		_localRotation += value;
+	}
+
+	void Transform::addLocalScale(vec3 value)
+	{
+		_localScale += value;
+	}
+
+	void Transform::addLocalXRotation(float value)
+	{
+		_localRotation.x += value;
+	}
+
+	void Transform::addLocalYRotation(float value)
+	{
+		_localRotation.y += value;
+	}
+	
+	void Transform::addLocalZRotation(float value)
+	{
+		_localRotation.z += value;
+	}
+
 	void Transform::setLocalRight(vec3 newRight)
 	{
 		_localRight = newRight;
@@ -60,6 +105,21 @@ namespace WillEngine
 	void Transform::setLocalFront(vec3 newFront)
 	{
 		_localFront = newFront;
+	}
+
+	void Transform::setLocalFrontX(float value)
+	{
+		_localFront.x = value;
+	}
+
+	void Transform::setLocalFrontY(float value)
+	{
+		_localFront.y = value;
+	}
+
+	void Transform::setLocalFrontZ(float value)
+	{
+		_localFront.z = value;
 	}
 
 	void Transform::setDefaultTransform()
@@ -101,5 +161,20 @@ namespace WillEngine
 	vec3 Transform::getLocalFront()
 	{
 		return _localFront;
+	}
+
+	vec3 Transform::getWorldRight()
+	{
+		return WorldRight;
+	}
+
+	vec3 Transform::getWorldUp()
+	{
+		return WorldUp;
+	}
+	
+	vec3 Transform::getWorldFront()
+	{
+		return WorldFront;
 	}
 }

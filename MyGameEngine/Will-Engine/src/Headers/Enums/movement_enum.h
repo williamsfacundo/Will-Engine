@@ -1,7 +1,7 @@
-#ifndef CAMERA_MOVEMENT_ENUM
-#define CAMERA_MOVEMENT_ENUM
+#ifndef MOVEMENT_ENUM
+#define MOVEMENT_ENUM
 
-enum class CameraMovementEnum 
+enum class MovementEnum 
 {
     FORWARD = 0,
     BACKWARD = 1,
