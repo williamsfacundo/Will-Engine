@@ -117,7 +117,7 @@ namespace WillEngine
 
 	void Engine::setObjects()
 	{
-		_object = new Cube();
+		_object = new Cube(_shader);
 
 		_object->createObject(_shader);		
 	
@@ -146,7 +146,7 @@ namespace WillEngine
 
 	void Engine::setCharacter()
 	{
-		_character = new Character(_window, _camera);
+		_character = new Character(_window, _camera, _shader);
 	}
 
 	void Engine::engineLoop()

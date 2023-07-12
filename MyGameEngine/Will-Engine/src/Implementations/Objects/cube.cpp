@@ -122,7 +122,7 @@ namespace WillEngine
 		setVertexArray(VAO);
 	}
 
-	Cube::Cube() : Object()
+	Cube::Cube(Shader* objectShader) : Object(objectShader)
 	{
 
 	}

@@ -20,7 +20,7 @@ namespace WillEngine
 		bool _firstPersonView;
 
 	public:
-		Character(Window* window, Camera* characterCamera);
+		Character(Window* window, Camera* characterCamera, Shader* objectShader);
 		~Character();
 
 		void setFirstPersonView(bool value);

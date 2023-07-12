@@ -8,7 +8,7 @@
 
 namespace WillEngine
 {
-	Character::Character(Window* window, Camera* characterCamera)
+	Character::Character(Window* window, Camera* characterCamera, Shader* objectShader) : Object(objectShader)
 	{
 		setFirstPersonView(true);
 		

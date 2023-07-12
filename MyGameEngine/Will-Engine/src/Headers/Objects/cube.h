@@ -11,7 +11,7 @@ namespace WillEngine
 		void setData();
 
 	public:
-		Cube();
+		Cube(Shader* objectShader);
 		~Cube();
 
 		int getAmountOfIndexes();

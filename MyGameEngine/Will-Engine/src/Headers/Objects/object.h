@@ -23,7 +23,7 @@ namespace WillEngine
 
 		void setObjectTransform(ObjectTransform* objectTransform);
 	public:
-		Object();
+		Object(Shader* objectShader);
 		~Object();
 
 		void setTexture(Texture* texture);		

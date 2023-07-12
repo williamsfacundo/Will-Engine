@@ -18,15 +18,23 @@ namespace WillEngine
 		_objectTransform = objectTransform;
 	}
 
-	Object::Object()
+	Object::Object(Shader* objectShader)
 	{
-		_shader = nullptr;
+		/*_shader = nullptr;
 
 		_texture = nullptr;
 
 		_objectTransform = nullptr;
 
+		_vertexArray = 0;*/
+
+		_texture = nullptr;
+
 		_vertexArray = 0;
+
+		_shader = objectShader;
+
+		_objectTransform = new ObjectTransform(_shader);	
 	}
 
 	Object::~Object()
@@ -56,9 +64,9 @@ namespace WillEngine
 
 	void Object::createObject(Shader* objectShader)
 	{
-		_shader = objectShader;	
+		//_shader = objectShader;	
 
-		_objectTransform = new ObjectTransform(_shader);
+		//_objectTransform = new ObjectTransform(_shader);
 
 		setData();
 	}	
