@@ -28,7 +28,8 @@ namespace WillEngine
 		MovementEnum _horizontalKeyboardInput;
 		MovementEnum _verticalKeyboardInput;
 
-		float _moveSpeed;		
+		float _moveSpeed;
+		float _initialYPos;
 
 		int _moveForwardKey;
 		int _moveBackwardKey;
@@ -36,6 +37,7 @@ namespace WillEngine
 		int _moveLeftKey;
 
 		bool _moveInputDetected;
+		bool _canFly;
 
 	public:
 		MovementController(Window* window, ObjectTransform* characterTransform, Transform* cameraTransform);

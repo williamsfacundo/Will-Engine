@@ -15,6 +15,12 @@ namespace WillEngine
 
 		_moveSpeed = DefaultMoveSpeed;
 
+		_initialYPos = cameraTransform->getLocalPosition().y;
+
+		_moveInputDetected = false;
+
+		_canFly = true;
+
 		setInputKeysToDefault();		
 	}
 
@@ -124,16 +130,33 @@ namespace WillEngine
 	{
 		if (_moveInputDetected)
 		{
+			vec3 _translationValue;
+			
+
 			switch (_horizontalKeyboardInput)
 			{
 			case MovementEnum::FORWARD:
 
-				_characterTransform->addLocalPosition(_cameraTransform->getLocalFront() * _moveSpeed * DeltaTime::getDeltaTime());
+				_translationValue = _cameraTransform->getLocalFront() * _moveSpeed * DeltaTime::getDeltaTime();
+				
+				if(!_canFly)
+				{
+					_translationValue.y = _initialYPos;
+				}
+
+				_characterTransform->addLocalPosition(_translationValue);
 								
 				break;
 			case MovementEnum::BACKWARD:
 
-				_characterTransform->addLocalPosition(-_cameraTransform->getLocalFront() * _moveSpeed * DeltaTime::getDeltaTime());
+				_translationValue = -_cameraTransform->getLocalFront() * _moveSpeed * DeltaTime::getDeltaTime();
+
+				if (!_canFly)
+				{
+					_translationValue.y = _initialYPos;
+				}
+
+				_characterTransform->addLocalPosition(_translationValue);
 
 				break;
 			case MovementEnum::NONE:
@@ -146,12 +169,26 @@ namespace WillEngine
 			{
 			case MovementEnum::LEFT:
 
-				_characterTransform->addLocalPosition(-_cameraTransform->getLocalRight() * _moveSpeed * DeltaTime::getDeltaTime());
+				_translationValue = -_cameraTransform->getLocalRight() * _moveSpeed * DeltaTime::getDeltaTime();
+
+				if (!_canFly)
+				{
+					_translationValue.y = _initialYPos;
+				}
+
+				_characterTransform->addLocalPosition(_translationValue);
 
 				break;
 			case MovementEnum::RIGHT:
 
-				_characterTransform->addLocalPosition(_cameraTransform->getLocalRight() * _moveSpeed * DeltaTime::getDeltaTime());
+				_translationValue = _cameraTransform->getLocalRight() * _moveSpeed * DeltaTime::getDeltaTime();
+
+				if (!_canFly)
+				{
+					_translationValue.y = _initialYPos;
+				}
+
+				_characterTransform->addLocalPosition(_translationValue);
 
 				break;
 			case MovementEnum::NONE:
