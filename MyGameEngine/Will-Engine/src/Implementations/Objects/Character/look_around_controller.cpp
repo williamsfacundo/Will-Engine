@@ -15,8 +15,8 @@ namespace WillEngine
 		_mouseXPos = 0.0f;
 		_mouseYPos = 0.0f;
 
-		_lastMouseXPos = 0.0f;
-		_lastMouseYPos = 0.0f;
+		_lastMouseXPos = 400.0f;
+		_lastMouseYPos = 300.0f;
 
 		_mouseXOffset = 0.0f;
 		_mouseYOffset = 0.0f;
@@ -64,21 +64,8 @@ namespace WillEngine
 			_mouseXOffset *= _mouseSensitivity;
 			_mouseYOffset *= _mouseSensitivity;			
 
-			//_yaw += _mouseXOffset;
-			//_pitch += _mouseYOffset;
-
 			_cameraTransform->addLocalXRotation(_mouseYOffset);
 			_cameraTransform->addLocalYRotation(_mouseXOffset);
-
-			/*if (_pitch > 89.0f)
-			{
-				_pitch = 89.0f;
-			}
-
-			if (_pitch < -89.0f)
-			{
-				_pitch = -89.0f;
-			}*/
 
 			if(_cameraTransform->getLocalRotation().x > 89.0f)
 			{
@@ -90,22 +77,8 @@ namespace WillEngine
 				_cameraTransform->setLocalRotationX(-89.0f);
 			}
 
-			/*_front.x = cos(radians(_yaw)) * cos(radians(_pitch));
-
-			_front.y = sin(radians(_pitch));
-
-			_front.z = sin(radians(_yaw)) * cos(radians(_pitch));
-
-			_front = normalize(_front);
-
-			_right = normalize(cross(_front, WorldUp));
-
-			_up = normalize(cross(_right, _front));*/
-
-			//x(pitch), y(yaw), z(roll)
-
 			_cameraTransform->setLocalFrontX(cos(radians(_cameraTransform->getLocalRotation().y)) * cos(radians(_cameraTransform->getLocalRotation().x)));
-			_cameraTransform->setLocalFrontY(sin(radians(_cameraTransform->getLocalRotation().y)));
+			_cameraTransform->setLocalFrontY(sin(radians(_cameraTransform->getLocalRotation().x)));
 			_cameraTransform->setLocalFrontZ(sin(radians(_cameraTransform->getLocalRotation().y)) * cos(radians(_cameraTransform->getLocalRotation().x)));
 			_cameraTransform->setLocalFront(normalize(_cameraTransform->getLocalFront()));
 			
